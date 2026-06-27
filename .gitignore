@@ -1,0 +1,13 @@
+# Large video files - deploy via Netlify Drop
+assets/videos/*.mp4
+assets/videos/*.mov
+assets/videos/*.webm
+
+# Original source files
+Updates Assets/
+
+# Temp files
+.DS_Store
+Thumbs.db
+*.log
+index.backup.html

@@ -1,0 +1,107 @@
+<svg viewBox="0 0 560 650" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+  <defs>
+    <style>
+      @keyframes lineDraw { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
+      @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+      .line-anim { stroke-dasharray: 300; stroke-dashoffset: 300; animation: lineDraw 1.4s ease forwards; }
+      .stat-1 { animation: fadeUp 0.6s ease 0.2s both; }
+      .stat-2 { animation: fadeUp 0.6s ease 0.4s both; }
+      .stat-3 { animation: fadeUp 0.6s ease 0.6s both; }
+      .stat-4 { animation: fadeUp 0.6s ease 0.8s both; }
+      .tag-row { animation: fadeUp 0.6s ease 1s both; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="560" height="650" rx="16" fill="#111111"/>
+
+  <!-- Subtle dot grid -->
+  <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="#ffffff" opacity="0.04"/>
+  </pattern>
+  <rect width="560" height="650" rx="16" fill="url(#dots)"/>
+
+  <!-- Top accent line -->
+  <line x1="48" y1="48" x2="280" y2="48" stroke="#c084fc" stroke-width="2" class="line-anim"/>
+
+  <!-- Name + title -->
+  <text x="48" y="90" font-family="Inter,sans-serif" font-size="28" font-weight="900" fill="#f0f0f0" letter-spacing="-1">Jordan Femi-Famakinwa</text>
+  <text x="48" y="116" font-family="Inter,sans-serif" font-size="14" font-weight="500" fill="#c084fc" letter-spacing="2">SENIOR BRAND &amp; DIGITAL DESIGNER</text>
+
+  <!-- Divider -->
+  <line x1="48" y1="140" x2="512" y2="140" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Stats grid — 2x2 -->
+  <!-- Stat 1 -->
+  <g class="stat-1">
+    <text x="48" y="188" font-family="Inter,sans-serif" font-size="52" font-weight="900" fill="#c084fc" letter-spacing="-2">10+</text>
+    <text x="48" y="212" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">YEARS EXPERIENCE</text>
+  </g>
+
+  <!-- Stat 2 -->
+  <g class="stat-2">
+    <text x="300" y="188" font-family="Inter,sans-serif" font-size="52" font-weight="900" fill="#c084fc" letter-spacing="-2">6</text>
+    <text x="300" y="212" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">COMPANIES</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="48" y1="232" x2="512" y2="232" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Stat 3 -->
+  <g class="stat-3">
+    <text x="48" y="280" font-family="Inter,sans-serif" font-size="52" font-weight="900" fill="#c084fc" letter-spacing="-2">3</text>
+    <text x="48" y="304" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">GLOBAL EXHIBITIONS</text>
+  </g>
+
+  <!-- Stat 4 -->
+  <g class="stat-4">
+    <text x="300" y="280" font-family="Inter,sans-serif" font-size="52" font-weight="900" fill="#c084fc" letter-spacing="-2">B2B</text>
+    <text x="300" y="304" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">CORPORATE &amp; TECH</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="48" y1="328" x2="512" y2="328" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Skills tags -->
+  <g class="tag-row">
+    <text x="48" y="360" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#c084fc" letter-spacing="1.5">CORE SKILLS</text>
+
+    <!-- Tag 1 -->
+    <rect x="48" y="374" width="148" height="28" rx="14" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="122" y="393" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#f0f0f0">Brand Strategy</text>
+
+    <!-- Tag 2 -->
+    <rect x="206" y="374" width="160" height="28" rx="14" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="286" y="393" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#f0f0f0">Creative Direction</text>
+
+    <!-- Tag 3 -->
+    <rect x="376" y="374" width="136" height="28" rx="14" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="444" y="393" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#f0f0f0">Motion Graphics</text>
+
+    <!-- Tag 4 -->
+    <rect x="48" y="412" width="172" height="28" rx="14" fill="rgba(192,132,252,0.08)" stroke="#c084fc" stroke-width="1"/>
+    <text x="134" y="431" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="700" fill="#c084fc">AI-Assisted Creative</text>
+
+    <!-- Tag 5 -->
+    <rect x="230" y="412" width="144" height="28" rx="14" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="302" y="431" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#f0f0f0">Design Systems</text>
+
+    <!-- Tag 6 -->
+    <rect x="384" y="412" width="128" height="28" rx="14" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <text x="448" y="431" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#f0f0f0">Video Production</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="48" y1="456" x2="512" y2="456" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Software row -->
+  <text x="48" y="486" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#888" letter-spacing="1.5">SOFTWARE</text>
+  <text x="48" y="510" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#f0f0f0" opacity="0.7">Adobe CC · Figma · After Effects · Premiere Pro · Claude Code</text>
+
+  <!-- Bottom accent line -->
+  <line x1="280" y1="568" x2="512" y2="568" stroke="#c084fc" stroke-width="2" class="line-anim" style="animation-delay:0.5s"/>
+
+  <!-- Available badge -->
+  <rect x="48" y="548" width="152" height="32" rx="16" fill="#c084fc"/>
+  <text x="124" y="569" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#000" letter-spacing="0.5">Available for Work</text>
+</svg>

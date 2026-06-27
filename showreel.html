@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video & Motion Work, Jordan Femi-Famakinwa</title>
+  <meta name="description" content="Video and motion work portfolio: brand films, motion graphics, social content, and campaign videos using After Effects and Premiere Pro." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jordanfemi.netlify.app/showreel.html" />
+  <meta property="og:description" content="Video and motion work portfolio: brand films, motion graphics, social content, and campaign videos using After Effects and Premiere Pro." />
+  <meta property="og:image" content="https://jordanfemi.netlify.app/assets/hero-dp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://jordanfemi.netlify.app/assets/hero-dp.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --accent:#c084fc; --text:#f0f0f0; --muted:#888; --border:#2a2a2a; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 4rem; background: rgba(10,10,10,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--accent); text-decoration: none; }
+    .nav-cta { background: var(--accent); color: #000; padding: 0.55rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; text-decoration: none; }
+
+    .project-hero {
+      min-height: 60vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 10rem 4rem 4rem;
+      position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
+    }
+    .hero-bg { display: none; }
+    .hero-video-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+      transform: scale(1.06);
+      z-index: 0;
+    }
+    .hero-video-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .project-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { content: ''; width: 2rem; height: 2px; background: var(--accent); display: inline-block; }
+    .project-hero h1 { font-size: clamp(2.8rem, 6vw, 6rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 1.5rem; }
+    .project-hero h1 span { color: var(--accent); }
+    .project-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .meta-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+    .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(192,132,252,0.07); padding: 0.22rem 0.6rem; border-radius: 100px; border: 1px solid rgba(192,132,252,0.18); }
+    .tags-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .case-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; }
+    .body-text { font-size: 0.95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+    .two-col-3 { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+
+    /* Video grid */
+    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .video-item {
+      border-radius: 0.75rem; overflow: hidden;
+      border: 1px solid var(--border); background: #000;
+      transition: border-color 0.25s;
+    }
+    .video-item:hover { border-color: var(--accent); }
+    .video-item video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+    .video-item.featured { grid-column: span 2; }
+    .video-item.featured video { aspect-ratio: 16/9; }
+    .video-label {
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .next-project { padding: 5rem 4rem; background: var(--bg2); display: flex; justify-content: space-between; align-items: center; }
+    .next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .next-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
+    .btn-primary { background: var(--accent); color: #000; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .project-hero, .case-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-item.featured { grid-column: span 1; }
+      .next-project { flex-direction: column; gap: 2rem; align-items: flex-start; }
+    }
+
+    /* Play button overlay */
+    .video-item { position: relative; }
+    .video-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 1;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .video-item.playing::before { opacity: 0; }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% - 20px));
+      width: 64px;
+      height: 64px;
+      background: rgba(192,132,252,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 24px rgba(192,132,252,0.4);
+    }
+    .play-btn:hover { background: rgba(192,132,252,1); transform: translate(-50%, calc(-50% - 20px)) scale(1.08); }
+    .play-btn svg { margin-left: 4px; }
+    .video-item.playing .play-btn { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    .video-label { position: relative; z-index: 3; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Portfolio
+    </a>
+    <a href="index.html" class="nav-logo">JFF.</a>
+    <a href="index.html#contact" class="nav-cta">Hire Me</a>
+  </nav>
+
+  <div class="project-hero">
+    <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/thumbs/showreel-hero-poster.jpg">
+      <source src="assets/videos/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="project-eyebrow">Motion Graphics & Video Production</div>
+      <h1>Video &amp;<br><span>Motion</span><br>Work</h1>
+      <div class="project-meta">
+        <div class="meta-item">
+          <div class="meta-label">Discipline</div>
+          <div class="meta-value">Motion Graphics & Video Production</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tools</div>
+          <div class="meta-value">After Effects · Premiere Pro</div>
+        </div>
+      </div>
+      <div class="tags-row">
+        <span class="tag">Motion Graphics</span>
+        <span class="tag">Video Production</span>
+        <span class="tag">After Effects</span>
+        <span class="tag">Premiere Pro</span>
+        <span class="tag">Brand Animation</span>
+        <span class="tag">Social Content</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="case-section fade-up">
+    <div class="two-col-3">
+      <div>
+        <div class="section-label">Overview</div>
+        <h2 class="section-title">Motion built from scratch</h2>
+      </div>
+      <div>
+        <p class="body-text">A collection of motion graphics and video production work spanning brand animation, social content, internal communications, and campaign films, built from the ground up as an in-house capability across multiple organisations. Every piece was conceived, designed, and produced in After Effects and Premiere Pro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO WORK -->
+  <section class="case-section fade-up">
+    <div class="section-label">Motion & Video</div>
+    <h2 class="section-title">Selected work</h2>
+    <p class="body-text">A curated collection of motion graphics, brand films, and video production, built across multiple organisations and sectors.</p>
+    <div class="video-grid">
+      <div class="video-item featured">
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        <video controls preload="none" poster="assets/thumbs/kennedys-intro-thumb.jpg">
+          <source src="assets/videos/kennedys-intro.mp4" type="video/mp4" />
+        </video>
+        <div class="video-label">Global Strategic Plan, Introduction Film</div>
+      </div>
+      <div class="video-item">
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        <video controls preload="none" poster="assets/thumbs/video-animation-work-thumb.jpg">
+          <source src="assets/videos/video-animation-work.mp4" type="video/mp4" />
+        </video>
+        <div class="video-label">Video & Animation Work</div>
+      </div>
+      <div class="video-item">
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        <video controls preload="none" poster="assets/thumbs/showreel-GuohnKTmYZC-thumb.jpg">
+          <source src="assets/videos/showreel-GuohnKTmYZC.mp4" type="video/mp4" />
+        </video>
+        <div class="video-label">Brand motion, digital</div>
+      </div>
+      <div class="video-item">
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        <video controls preload="none" poster="assets/thumbs/carbon-clean-3-thumb.jpg">
+          <source src="assets/videos/carbon-clean-3.mp4" type="video/mp4" />
+        </video>
+        <div class="video-label">Campaign animation</div>
+      </div>
+      <div class="video-item">
+      <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        <video controls preload="none" poster="assets/thumbs/kennedys-foresight-thumb.jpg">
+          <source src="assets/videos/kennedys-foresight.mp4" type="video/mp4" />
+        </video>
+        <div class="video-label">Foresight, filming with John Bruce</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="next-project">
+    <div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">Built with Claude Code</div>
+    </div>
+    <a href="vibecoded.html" class="btn-primary">View Project →</a>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+  <script>
+    document.querySelectorAll('.play-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const video = btn.closest('.video-item').querySelector('video');
+        if (video) video.play();
+      });
+    });
+    document.querySelectorAll('.video-item video').forEach(video => {
+      const item = video.closest('.video-item');
+      video.addEventListener('play',  () => item.classList.add('playing'));
+      video.addEventListener('pause', () => item.classList.remove('playing'));
+      video.addEventListener('ended', () => item.classList.remove('playing'));
+    });
+  </script>
+</body>
+</html>
+
