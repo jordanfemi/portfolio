@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jordan Femi-Famakinwa, Senior Brand & Digital Designer</title>
   <meta name="description" content="Jordan Femi-Famakinwa, Senior Brand and Digital Designer with 10+ years in B2B, corporate and technology sectors. Brand strategy, motion graphics, and AI-assisted creative." />
@@ -520,9 +522,7 @@
     .process-card {
       background: var(--bg3); border: 1px solid var(--border);
       border-radius: 1rem; padding: 2rem 1.5rem;
-      transition: border-color 0.25s, transform 0.25s;
     }
-    .process-card:hover { border-color: var(--accent); transform: translateY(-3px); }
     .process-num {
       font-size: 2.8rem; font-weight: 900; color: var(--accent);
       letter-spacing: -0.04em; opacity: 0.22; line-height: 1; margin-bottom: 1rem;
@@ -531,6 +531,7 @@
     .process-text { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
 
     /* ── CONTACT ── */
+    html { scroll-padding-top: 80px; }
     #contact {
       background: var(--bg);
       text-align: center; display: flex;
@@ -769,7 +770,6 @@
         <div class="section-label">Selected Work</div>
         <h2 class="section-title" style="margin-bottom:0">Projects</h2>
       </div>
-      <a href="https://www.behance.net/jordanfemi" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="white-space:nowrap;flex-shrink:0">View All on Behance →</a>
     </div>
     <div class="work-grid">
 
@@ -1005,8 +1005,8 @@
           </div>
           <div class="exp-role">Marketing Designer</div>
           <ul class="exp-points">
-            <li>Produced performance-focused digital assets driving subscription growth across a portfolio of media brands.</li>
-            <li>Delivered print and digital collateral for high-profile events under tight deadlines.</li>
+            <li>Produced performance-focused digital assets for the world's largest motorsport media group, covering Formula 1, MotoGP, and endurance racing.</li>
+            <li>Delivered print and digital collateral for high-profile F1 race events and global motorsport sponsorship campaigns under tight deadlines.</li>
           </ul>
         </div>
         <div class="exp-item fade-up">
@@ -1138,6 +1138,27 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+    // Fast scroll to contact — bypasses slow CSS smooth scroll
+    document.querySelectorAll('a[href="#contact"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('#contact .fade-up').forEach(el => el.classList.add('visible'));
+        const target = document.getElementById('contact');
+        const start = window.scrollY;
+        const end = target.getBoundingClientRect().top + window.scrollY - 80;
+        const duration = 400;
+        let startTime = null;
+        function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          const progress = Math.min((ts - startTime) / duration, 1);
+          window.scrollTo(0, start + (end - start) * easeInOut(progress));
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    });
+
     // ── Active nav highlight ──
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -1154,5 +1175,6 @@
   </script>
 </body>
 </html>
+
 
 
