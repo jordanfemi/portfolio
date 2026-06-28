@@ -11,3 +11,6 @@ Updates Assets/
 Thumbs.db
 *.log
 index.backup.html
+
+# Local Netlify folder
+.netlify
