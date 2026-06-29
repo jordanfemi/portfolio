@@ -132,6 +132,8 @@
       transform: scale(1.06);
       z-index: 0;
     }
+    .hero-video-bg::-webkit-media-controls { display: none !important; }
+    .hero-video-bg::-webkit-media-controls-enclosure { display: none !important; }
     .hero-video-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
@@ -145,12 +147,12 @@
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Portfolio
     </a>
-    <a href="index.html" class="nav-logo">JFF.</a>
+    <a href="index.html" class="nav-logo">JF.</a>
     <a href="index.html#contact" class="nav-cta">Hire Me</a>
   </nav>
 
   <div class="project-hero">
-    <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/thumbs/carbonclean-hero-poster.jpg">
+    <video class="hero-video-bg" autoplay loop muted playsinline>
       <source src="assets/videos/carbonclean-hero-bg.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-overlay"></div>
@@ -304,5 +306,6 @@
   </script>
 </body>
 </html>
+
 
 

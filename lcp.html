@@ -76,6 +76,8 @@
     .next-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
     .btn-primary { background: var(--accent); color: #000; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
     .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .lcp-live-btn { display:inline-flex; align-items:center; gap:0.6rem; background:var(--bg3); border:1px solid var(--border); color:var(--text); text-decoration:none; padding:0.75rem 1.25rem; border-radius:0.6rem; font-size:0.84rem; font-weight:500; transition:border-color 0.2s; }
+    .lcp-live-btn:hover { border-color: var(--accent); }
 
     .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -135,6 +137,8 @@
       transform: scale(1.06);
       z-index: 0;
     }
+    .hero-video-bg::-webkit-media-controls { display: none !important; }
+    .hero-video-bg::-webkit-media-controls-enclosure { display: none !important; }
     .hero-video-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
@@ -148,12 +152,12 @@
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Portfolio
     </a>
-    <a href="index.html" class="nav-logo">JFF.</a>
+    <a href="index.html" class="nav-logo">JF.</a>
     <a href="index.html#contact" class="nav-cta">Hire Me</a>
   </nav>
 
   <div class="project-hero">
-    <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/thumbs/lcp-hero-poster.jpg">
+    <video class="hero-video-bg" autoplay loop muted playsinline>
       <source src="assets/videos/lcp-hero-bg.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-overlay"></div>
@@ -202,6 +206,12 @@
   <section class="case-section fade-up" style="padding-top:0">
     <img src="assets/lcp-content-1.jpg" alt="Lane Clark & Peacock, Campaign Design Overview" class="img-full" />
     <p class="img-caption">Campaign assets overview, publications, digital reports, event branding, and microsite design</p>
+    <div style="margin-top:1.5rem">
+      <a href="https://careers.lcp.com/" target="_blank" rel="noopener noreferrer" class="lcp-live-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View the live LCP Careers site
+      </a>
+    </div>
   </section>
 
   <section class="case-section fade-up">
@@ -292,6 +302,7 @@
   </script>
 </body>
 </html>
+
 
 
 

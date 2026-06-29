@@ -116,6 +116,64 @@
     .video-label { padding: 0.75rem 1rem; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
 
     /* NEXT PROJECT */
+    .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .concept-card { border-radius: 0.75rem; overflow: hidden; border: 1px solid var(--border); background: var(--bg3); cursor: pointer; transition: border-color 0.25s, transform 0.25s; }
+    .concept-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .concept-window { position: relative; height: 420px; overflow: hidden; }
+    .concept-window img { width: 100%; display: block; object-fit: cover; object-position: top; height: auto; }
+    .concept-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to bottom, transparent, var(--bg3)); pointer-events: none; }
+    .concept-expand { position: absolute; top: 1rem; right: 1rem; background: rgba(192,132,252,0.9); color: #000; border-radius: 100px; padding: 0.35rem 0.75rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .concept-card:hover .concept-expand { opacity: 1; }
+    .concept-label { padding: 0.75rem 1rem; font-size: 0.78rem; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; border-top: 1px solid var(--border); }
+    @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr; } }
+
+    /* ── FORESIGHT CAMPAIGN ── */
+    .campaign-hero { width: 100%; display: block; border-radius: 0.75rem; border: 1px solid var(--border); margin-top: 2rem; }
+    .campaign-video-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-top: 2.5rem; }
+    .campaign-channel { margin-top: 2.5rem; }
+    .campaign-channel-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .campaign-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .campaign-grid-3 img { width: 100%; display: block; border-radius: 0.75rem; border: 1px solid var(--border); aspect-ratio: 1; object-fit: cover; }
+    .campaign-region-card { position: relative; border-radius: 0.75rem; overflow: hidden; border: 1px solid var(--border); }
+    .campaign-region-card img { width: 100%; display: block; aspect-ratio: 1; object-fit: cover; }
+    .campaign-region-tag { position: absolute; bottom: 0.75rem; left: 0.75rem; background: rgba(0,0,0,0.75); color: var(--text); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); }
+    .campaign-email-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .campaign-email-row img { width: 100%; display: block; border-radius: 0.75rem; border: 1px solid var(--border); }
+    .campaign-banner { width: 100%; display: block; border-radius: 0.75rem; border: 1px solid var(--border); margin-top: 1rem; }
+    @media (max-width: 900px) {
+      .campaign-video-row { grid-template-columns: 1fr; }
+      .campaign-grid-3 { grid-template-columns: 1fr 1fr; }
+      .campaign-email-row { grid-template-columns: 1fr; }
+    }
+
+    /* Carousel row */
+    .carousel-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1rem; }
+    .carousel-col { display: flex; flex-direction: column; gap: 0.5rem; }
+    .carousel-region-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    @media (max-width: 900px) { .carousel-row { grid-template-columns: 1fr; } }
+
+    /* Carousel */
+    .carousel-viewer { position: relative; border-radius: 0.75rem; overflow: hidden; border: 1px solid var(--border); background: var(--bg3); margin-top: 1rem; }
+    .carousel-track { display: flex; transition: transform 0.4s ease; }
+    .carousel-slide { min-width: 100%; }
+    .carousel-slide img { width: 100%; display: block; aspect-ratio: 1; object-fit: cover; }
+    #ksplDeckCarousel .carousel-slide img { aspect-ratio: 16/9; object-fit: contain; background: #000; }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+    .carousel-btn:hover { background: var(--accent); color: #000; }
+    .carousel-prev { left: 0.75rem; }
+    .carousel-next { right: 0.75rem; }
+    .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; padding: 0.75rem; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; transition: background 0.2s; }
+    .carousel-dot.active { background: var(--accent); }
+
+    /* Lightbox */
+    .concept-lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); overflow-y: auto; }
+    .concept-lightbox.active { display: block; }
+    .concept-lightbox-inner { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .concept-lightbox img { width: 100%; display: block; border-radius: 0.75rem; }
+    .concept-lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; background: var(--accent); color: #000; border: none; border-radius: 100px; padding: 0.6rem 1.25rem; font-size: 0.84rem; font-weight: 700; cursor: pointer; z-index: 10000; }
+    .concept-lightbox-label { text-align: center; color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+
     .next-project {
       padding: 5rem 4rem; background: var(--bg2);
       display: flex; justify-content: space-between; align-items: center;
@@ -150,6 +208,25 @@
       .video-item.featured { grid-column: span 1 !important; }
       .next-project { flex-direction: column; gap: 2rem; align-items: flex-start; }
     }
+
+    /* ── KSPL CAMPAIGN ── */
+    .kspl-hero { width: 100%; display: block; border-radius: 0.75rem; margin-top: 1rem; }
+    /* Horizontal scroll strip for exploration images */
+    .explore-wrap { position: relative; margin-top: 1.25rem; }
+    .explore-strip { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.75rem; -webkit-overflow-scrolling: touch; }
+    .explore-strip::-webkit-scrollbar { height: 4px; }
+    .explore-strip::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+    .explore-strip::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+    .explore-strip img { height: 220px; width: auto; flex-shrink: 0; border-radius: 0.5rem; border: 1px solid var(--border); scroll-snap-align: start; object-fit: cover; }
+    .explore-strip.banners img { height: 80px; width: auto; }
+    .explore-arrow { position: absolute; top: 50%; transform: translateY(-60%); background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 36px; height: 36px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+    .explore-arrow:hover { background: var(--accent); color: #000; }
+    .explore-arrow.left { left: 0.5rem; }
+    .explore-arrow.right { right: 0.5rem; }
+    /* Video grid for 7 videos */
+    .kspl-video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+    .kspl-video-grid .video-item.featured { grid-column: span 2; }
+    @media (max-width: 900px) { .kspl-video-grid { grid-template-columns: 1fr; } .kspl-video-grid .video-item.featured { grid-column: span 1; } }
 
     /* Play button overlay */
     .video-item { position: relative; }
@@ -195,6 +272,8 @@
       transform: scale(1.06);
       z-index: 0;
     }
+    .hero-video-bg::-webkit-media-controls { display: none !important; }
+    .hero-video-bg::-webkit-media-controls-enclosure { display: none !important; }
     .hero-video-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
@@ -208,13 +287,13 @@
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Portfolio
     </a>
-    <a href="index.html" class="nav-logo">JFF.</a>
+    <a href="index.html" class="nav-logo">JF.</a>
     <a href="index.html#contact" class="nav-cta">Hire Me</a>
   </nav>
 
   <!-- HERO -->
   <div class="project-hero">
-    <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/thumbs/kennedys-hero-poster.jpg">
+    <video class="hero-video-bg" autoplay loop muted playsinline>
       <source src="assets/videos/kennedys-hero-bg.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-overlay"></div>
@@ -255,8 +334,8 @@
         <h2 class="section-title">Global design<br>at scale</h2>
       </div>
       <div>
-        <p class="body-text">Joining Kennedys Law LLP as Senior Brand & Digital Designer, I was brought in to elevate the creative function to match the firm's global standing. The challenge was to formalise design processes, strengthen brand cohesion, and build the infrastructure needed to scale creative efficiently across a rapidly growing international organisation.</p>
-        <p class="body-text" style="margin-top:1rem">I approached this as a systemic challenge. I overhauled brand cohesion across all channels, introduced a formal design request process, implemented a digital asset management system, developed a social media strategy that measurably improved performance, and built an in-house video and motion pipeline that replaced external studio dependency. I also streamlined the design system and built a modular template library that empowered non-designers to produce on-brand materials independently, freeing the creative team to focus on senior-level work.</p>
+        <p class="body-text">Joining Kennedys Law LLP as Senior Brand & Digital Designer, I was brought in to build a creative function that could operate at the scale of a 2,900-person global law firm. What followed was two years of systemic design leadership: brand standards enforced across 45 offices in 18 countries, an in-house motion and video capability built from scratch, and two major integrated campaigns produced entirely without external studios.</p>
+        <p class="body-text" style="margin-top:1rem">This page documents the full output — from the brand infrastructure and DAM system that underpins everything, to the Global Strategic Plan campaign (seven films, a stakeholder presentation deck, and a full suite of digital assets) and the Kennedys Foresight 2026 campaign (regional LinkedIn carousels across UK, US and APAC, email communications, social video, and a teaser film). Every asset on this page was conceived, designed, and produced in-house.</p>
       </div>
     </div>
   </section>
@@ -267,7 +346,306 @@
     <img src="assets/kennedys-content-2.gif" alt="Kennedys motion work" style="width:100%;display:block;border-radius:0 0 0.75rem 0.75rem;border:1px solid var(--border);border-top:none;" />
   </section>
 
+  <!-- FORESIGHT CAMPAIGN -->
+  <section class="case-section fade-up">
+    <div class="section-label">Campaign</div>
+    <h2 class="section-title">Kennedys Foresight<br>2026.</h2>
+    <p class="body-text">A fully integrated campaign built around Kennedys' annual risk report, delivered across social media, email, presentations, and video. Produced across three regions — UK, US, and APAC — with adapted assets tailored to each market.</p>
+
+    <img src="assets/foresight-hero.jpg" alt="Foresight 2026 Campaign Hero" class="campaign-hero" loading="lazy" />
+
+    <div class="campaign-video-row" style="margin-top:2.5rem">
+      <div>
+        <div class="video-item" style="margin-top:0">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/foresight-linkedin-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kennedys-foresight-linkedin.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:0.75rem">Teaser Film</div>
+        <h3 style="font-size:1.4rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.2">Before the campaign dropped.</h3>
+        <p class="body-text">Released ahead of the full Foresight 2026 launch, this short teaser was designed to build anticipation across LinkedIn. No report. No data. Just enough to make the audience curious about what was coming. It ran for a week before the campaign went live.</p>
+      </div>
+    </div>
+
+    <div class="campaign-video-row">
+      <div>
+        <div class="video-item" style="margin-top:0">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/foresight-26-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kennedys-foresight-26.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:0.75rem">Campaign Film</div>
+        <h3 style="font-size:1.4rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.2">Introducing the 2026 risk landscape.</h3>
+        <p class="body-text">An interview-led campaign film introducing the Foresight report, featuring senior Kennedys partners. Designed to drive engagement across LinkedIn and internal comms, setting the tone for the full campaign rollout.</p>
+      </div>
+    </div>
+
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Social Media — Single Graphics</div>
+      <div class="campaign-grid-3">
+        <img src="assets/foresight-social-1.jpg" alt="Foresight Social Graphic 1" loading="lazy" />
+        <img src="assets/foresight-social-2.jpg" alt="Foresight Social Graphic 2" loading="lazy" />
+        <img src="assets/foresight-social-3.jpg" alt="Foresight Social Graphic 3" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">LinkedIn Carousels — UK, US & APAC</div>
+      <div class="carousel-row">
+
+        <div class="carousel-col">
+          <div class="carousel-region-label">UK</div>
+          <div class="carousel-viewer" id="ukCarousel">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-1.jpg" alt="UK Slide 1" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-2.jpg" alt="UK Slide 2" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-3.jpg" alt="UK Slide 3" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-4.jpg" alt="UK Slide 4" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-5.jpg" alt="UK Slide 5" loading="lazy" /></div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselMove('ukCarousel', -1)">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="carouselMove('ukCarousel', 1)">&#8594;</button>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+
+        <div class="carousel-col">
+          <div class="carousel-region-label">US</div>
+          <div class="carousel-viewer" id="usCarousel">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-1.jpg" alt="US Slide 1" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-2.jpg" alt="US Slide 2" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-3.jpg" alt="US Slide 3" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-4.jpg" alt="US Slide 4" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-5.jpg" alt="US Slide 5" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-us-6.jpg" alt="US Slide 6" loading="lazy" /></div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselMove('usCarousel', -1)">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="carouselMove('usCarousel', 1)">&#8594;</button>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+
+        <div class="carousel-col">
+          <div class="carousel-region-label">APAC</div>
+          <div class="carousel-viewer" id="apacCarousel">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-1.jpg" alt="APAC Slide 1" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-2.jpg" alt="APAC Slide 2" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-3.jpg" alt="APAC Slide 3" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-4.jpg" alt="APAC Slide 4" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-5.jpg" alt="APAC Slide 5" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-6.jpg" alt="APAC Slide 6" loading="lazy" /></div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselMove('apacCarousel', -1)">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="carouselMove('apacCarousel', 1)">&#8594;</button>
+            <div class="carousel-dots"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Social Video Post</div>
+      <div class="campaign-video-row" style="margin-top:0">
+        <div>
+          <div class="video-item" style="margin-top:0">
+            <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" poster="assets/thumbs/foresight-social-video-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+              <source src="assets/videos/foresight-social-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom:0.75rem">Social Video Post</div>
+          <h3 style="font-size:1.4rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.2">The economic outlook: adapting insurance.</h3>
+          <p class="body-text">A short-form video post produced as part of the Foresight 2026 social campaign, driving engagement around one of the report's key themes. Designed to perform natively on LinkedIn, concise, on-brand, and built around a single insight from the report.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Email — Vuture Banners & Snippets</div>
+      <img src="assets/foresight-email-banner.jpg" alt="Foresight Email Banner" class="campaign-banner" loading="lazy" />
+      <div class="campaign-email-row">
+        <img src="assets/foresight-email-snippet.jpg" alt="Foresight Email Snippet Image" loading="lazy" />
+        <img src="assets/foresight-email-snippet-solid.jpg" alt="Foresight Email Snippet Solid" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- GLOBAL STRATEGIC PLAN CAMPAIGN -->
+  <section class="case-section fade-up">
+    <div class="section-label">Campaign</div>
+    <h2 class="section-title">Global Strategic<br>Plan.</h2>
+    <p class="body-text">A firm-wide internal campaign built to launch Kennedys' Global Strategic Plan — the organisation's multi-year growth framework. The brief required something that felt genuinely ambitious: a visual identity strong enough to carry across video, digital, print, and live events, while landing with both partners and staff. Every asset — from the opening concept to the final suite of seven films — was conceived, designed, and produced in-house.</p>
+
+    <img src="assets/kspl-final-cover.jpg" alt="Global Strategic Plan Front Cover" class="kspl-hero" loading="lazy" />
+
+    <!-- DESIGN EXPLORATION -->
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Design Exploration — Main Theme Concepts</div>
+      <p class="body-text" style="margin-bottom:0">Before a single asset was produced, the visual direction went through a rigorous exploration phase. Multiple creative directions were developed and pressure-tested before a route was selected. Scroll to see the full breadth of the thinking.</p>
+      <div class="explore-wrap">
+        <button class="explore-arrow left" onclick="scrollStrip('themeStrip',-1)">&#8592;</button>
+        <div class="explore-strip" id="themeStrip">
+          <img src="assets/kspl-theme-1.jpg" alt="Theme Concept 1" loading="lazy" />
+          <img src="assets/kspl-theme-2.jpg" alt="Theme Concept 2" loading="lazy" />
+          <img src="assets/kspl-theme-3.jpg" alt="Theme Concept 3" loading="lazy" />
+          <img src="assets/kspl-theme-4.jpg" alt="Theme Concept 4" loading="lazy" />
+          <img src="assets/kspl-theme-5.jpg" alt="Theme Concept 5" loading="lazy" />
+          <img src="assets/kspl-theme-6.jpg" alt="Theme Concept 6" loading="lazy" />
+          <img src="assets/kspl-theme-7.jpg" alt="Theme Concept 7" loading="lazy" />
+          <img src="assets/kspl-theme-8.jpg" alt="Theme Concept 8" loading="lazy" />
+          <img src="assets/kspl-theme-9.jpg" alt="Theme Concept 9" loading="lazy" />
+          <img src="assets/kspl-theme-10.jpg" alt="Theme Concept 10" loading="lazy" />
+        </div>
+        <button class="explore-arrow right" onclick="scrollStrip('themeStrip',1)">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Design Exploration — Banner Concepts</div>
+      <div class="explore-wrap">
+        <button class="explore-arrow left" onclick="scrollStrip('bannerStrip',-1)">&#8592;</button>
+        <div class="explore-strip banners" id="bannerStrip">
+          <img src="assets/kspl-banner-1.jpg" alt="Banner Concept 1" loading="lazy" />
+          <img src="assets/kspl-banner-2.jpg" alt="Banner Concept 2" loading="lazy" />
+          <img src="assets/kspl-banner-3.jpg" alt="Banner Concept 3" loading="lazy" />
+          <img src="assets/kspl-banner-4.jpg" alt="Banner Concept 4" loading="lazy" />
+          <img src="assets/kspl-banner-5.jpg" alt="Banner Concept 5" loading="lazy" />
+          <img src="assets/kspl-banner-6.jpg" alt="Banner Concept 6" loading="lazy" />
+          <img src="assets/kspl-banner-7.jpg" alt="Banner Concept 7" loading="lazy" />
+          <img src="assets/kspl-banner-8.jpg" alt="Banner Concept 8" loading="lazy" />
+          <img src="assets/kspl-banner-9.jpg" alt="Banner Concept 9" loading="lazy" />
+          <img src="assets/kspl-banner-10.jpg" alt="Banner Concept 10" loading="lazy" />
+          <img src="assets/kspl-banner-11.jpg" alt="Banner Concept 11" loading="lazy" />
+          <img src="assets/kspl-banner-12.jpg" alt="Banner Concept 12" loading="lazy" />
+        </div>
+        <button class="explore-arrow right" onclick="scrollStrip('bannerStrip',1)">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- STAKEHOLDER PRESENTATION -->
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Stakeholder Presentation — Design Direction</div>
+      <p class="body-text" style="margin-bottom:0">A visual concept deck presented to senior internal stakeholders to align on the chosen creative direction before production began. Nine slides. One route selected.</p>
+      <div class="carousel-viewer" id="ksplDeckCarousel" style="margin-top:1rem">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/kspl-slide-1.jpg" alt="Slide 1" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-2.jpg" alt="Slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-3.jpg" alt="Slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-4.jpg" alt="Slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-5.jpg" alt="Slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-6.jpg" alt="Slide 6" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-7.jpg" alt="Slide 7" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-8.jpg" alt="Slide 8" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kspl-slide-9.jpg" alt="Slide 9" loading="lazy" /></div>
+        </div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove('ksplDeckCarousel', -1)">&#8592;</button>
+        <button class="carousel-btn carousel-next" onclick="carouselMove('ksplDeckCarousel', 1)">&#8594;</button>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+
+    <!-- VIDEO SERIES -->
+    <div class="campaign-channel">
+      <div class="campaign-channel-label">Video Campaign — 7 Films</div>
+      <p class="body-text" style="margin-bottom:0">A series of seven films produced entirely in-house, covering the full scope of the strategic plan: introduction, people, clients, innovation, finance, growth, and a firm-wide town hall. Each video was scripted, designed, and delivered as part of a single coordinated campaign rollout.</p>
+      <div class="kspl-video-grid">
+        <div class="video-item featured">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-intro-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-intro.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Introduction Film</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-people-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-people.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">People</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-clients-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-clients.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Clients</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-innovation-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-innovation.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Innovation</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-finance-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-finance.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Finance</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-growth-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-growth.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Growth</div>
+        </div>
+        <div class="video-item">
+          <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+          <video controls preload="none" poster="assets/thumbs/kspl-video-townhall-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+            <source src="assets/videos/kspl-video-townhall.mp4" type="video/mp4" />
+          </video>
+          <div class="video-label">Town Hall</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- MOTION WORK -->
+  <section class="case-section fade-up">
+    <div class="section-label">Concept Work</div>
+    <h2 class="section-title">Website redesign<br>proposals.</h2>
+    <p class="body-text">Three homepage concepts developed as part of an upcoming Kennedys brand refresh. Proposed directions exploring how the firm's digital presence could evolve to better reflect its global scale and creative ambition.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-window">
+          <img src="assets/kennedys-concept-1.png" alt="Kennedys Website Redesign Concept 1" loading="lazy" />
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept A</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-window">
+          <img src="assets/kennedys-concept-2.png" alt="Kennedys Website Redesign Concept 2" loading="lazy" />
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept B</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-window">
+          <img src="assets/kennedys-concept-3.png" alt="Kennedys Website Redesign Concept 3" loading="lazy" />
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept C</div>
+      </div>
+    </div>
+  </section>
+
   <section class="case-section fade-up">
     <div class="section-label">Motion & Video</div>
     <h2 class="section-title">Built in-house<br>from scratch</h2>
@@ -311,7 +689,8 @@
     </div>
   </section>
 
-  <!-- NEXT PROJECT -->
+
+
   <!-- CLOSING -->
   <section class="case-section fade-up">
     <div class="two-col-3">
@@ -320,8 +699,8 @@
         <h2 class="section-title">A creative<br>function that<br>lasts.</h2>
       </div>
       <div>
-        <p class="body-text">What started as a brief to improve visual output became something more significant, the establishment of a fully functioning, strategically-led creative department within one of the world's leading law firms. The work I built at Kennedys isn't dependent on any one individual. The systems, guidelines, and production pipelines I designed are now embedded across the organisation, used daily by teams across multiple territories.</p>
-        <p class="body-text" style="margin-top:1rem">This is what senior design leadership looks like in a professional services context: not just producing great work, but building the infrastructure, culture, and capability that raises the quality of everything around it. Stakeholders who once questioned the value of in-house creative now champion it. Partners who once approved designs reluctantly now brief the team proactively. The creative function has moved from a cost centre to a recognised driver of business development and brand equity.</p>
+        <p class="body-text">The output documented on this page tells one story: a creative function that went from scattered and reactive to structured, strategic, and genuinely ambitious. Two major integrated campaigns. Fourteen campaign videos produced in-house. Regional content adapted across three global markets. A stakeholder presentation that aligned the firm's senior leadership on a single creative direction. Email, social, print, and digital collateral all produced without a single external studio brief.</p>
+        <p class="body-text" style="margin-top:1rem">That scale of output only happens when the infrastructure is right — when the brand guidelines, the DAM system, the production pipelines, and the team culture are all pulling in the same direction. Building that infrastructure is what this role has been. The campaigns are the proof of what it makes possible.</p>
       </div>
     </div>
   </section>
@@ -354,9 +733,96 @@
       video.addEventListener('pause', () => item.classList.remove('playing'));
       video.addEventListener('ended', () => item.classList.remove('playing'));
     });
+
+    // Carousel
+    const carousels = {};
+    document.querySelectorAll('.carousel-viewer').forEach(viewer => {
+      const id = viewer.id;
+      const slides = viewer.querySelectorAll('.carousel-slide');
+      const dotsEl = viewer.querySelector('.carousel-dots');
+      carousels[id] = { index: 0, total: slides.length };
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(id, i));
+        dotsEl.appendChild(dot);
+      });
+    });
+
+    function goTo(id, index) {
+      const viewer = document.getElementById(id);
+      const track = viewer.querySelector('.carousel-track');
+      const dots = viewer.querySelectorAll('.carousel-dot');
+      carousels[id].index = index;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function carouselMove(id, dir) {
+      const c = carousels[id];
+      const next = (c.index + dir + c.total) % c.total;
+      goTo(id, next);
+    }
+  </script>
+
+  <!-- Concept Lightbox -->
+  <div class="concept-lightbox" id="conceptLightbox">
+    <button class="concept-lightbox-close" id="conceptClose">Close</button>
+    <div class="concept-lightbox-inner">
+      <div class="concept-lightbox-label" id="conceptLightboxLabel"></div>
+      <img id="conceptLightboxImg" src="" alt="" />
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('conceptLightbox');
+    const lbImg = document.getElementById('conceptLightboxImg');
+    const lbLabel = document.getElementById('conceptLightboxLabel');
+
+    document.querySelectorAll('.concept-card').forEach(card => {
+      card.addEventListener('click', () => {
+        lbImg.src = card.querySelector('img').src;
+        lbLabel.textContent = card.querySelector('.concept-label').textContent;
+        lightbox.classList.add('active');
+        lightbox.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.getElementById('conceptClose').addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Horizontal strip arrows
+    function scrollStrip(id, dir) {
+      const strip = document.getElementById(id);
+      const itemWidth = strip.querySelector('img').offsetWidth + 16;
+      const distance = dir * itemWidth;
+      const start = strip.scrollLeft;
+      const end = start + distance;
+      const duration = 500;
+      let startTime = null;
+      function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        const progress = Math.min((ts - startTime) / duration, 1);
+        strip.scrollLeft = start + (end - start) * ease(progress);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
   </script>
 </body>
 </html>
+
 
 
 
