@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,12 +8,22 @@
   <title>Jordan Femi-Famakinwa, Senior Brand & Digital Designer</title>
   <meta name="description" content="Jordan Femi-Famakinwa, Senior Brand and Digital Designer with 10+ years in B2B, corporate and technology sectors. Brand strategy, motion graphics, and AI-assisted creative." />
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jordan Femi-Famakinwa, Senior Brand & Digital Designer" />
   <meta property="og:url" content="https://jordanfemidesign.com/" />
   <meta property="og:description" content="Jordan Femi-Famakinwa, Senior Brand and Digital Designer with 10+ years in B2B, corporate and technology sectors. Brand strategy, motion graphics, and AI-assisted creative." />
-  <meta property="og:image" content="https://jordanfemidesign.com/assets/hero-dp.png" />
+  <meta property="og:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://jordanfemidesign.com/assets/hero-dp.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <meta name="twitter:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-19CZ6Z5MK8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-19CZ6Z5MK8');
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,7 +38,7 @@
       --border: #2a2a2a;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -37,7 +47,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* -- NAV -- */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -77,8 +87,8 @@
     }
     .nav-cta:hover { background: var(--accent2) !important; }
 
-    /* ── HERO ── */
-    /* ── HERO BACKGROUND ── */
+    /* -- HERO -- */
+    /* -- HERO BACKGROUND -- */
     #hero::before {
       content: '';
       position: absolute;
@@ -237,7 +247,7 @@
       50%      { width:5rem; opacity:0.4; }
     }
 
-    /* ── BUTTONS ── */
+    /* -- BUTTONS -- */
     .btn-primary {
       background: var(--accent); color: #000;
       padding: 0.9rem 2rem; border-radius: 100px;
@@ -257,7 +267,7 @@
     }
     .btn-secondary:hover { border-color: var(--muted); transform: translateY(-2px); }
 
-    /* ── STATS BAR ── */
+    /* -- STATS BAR -- */
     .stats-bar {
       background: var(--bg2);
       border-top: 1px solid var(--border);
@@ -285,7 +295,7 @@
       margin-top: 0.4rem;
     }
 
-    /* ── SECTIONS SHARED ── */
+    /* -- SECTIONS SHARED -- */
     section { padding: 6rem 4rem; }
     .section-label {
       font-size: 0.72rem; font-weight: 600;
@@ -298,7 +308,7 @@
       line-height: 1.05; margin-bottom: 1.5rem;
     }
 
-    /* ── MARQUEE ── */
+    /* -- MARQUEE -- */
     .marquee-wrap {
       overflow: hidden;
       border-bottom: 1px solid var(--border);
@@ -322,7 +332,7 @@
       to   { transform: translateX(-50%); }
     }
 
-    /* ── ACHIEVEMENTS ── */
+    /* -- ACHIEVEMENTS -- */
     #achievements { background: var(--bg2); padding: 5rem 4rem; }
     .achievements-grid {
       display: grid;
@@ -366,7 +376,7 @@
     .achievement-title { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; }
     .achievement-text { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
 
-    /* ── WORK ── */
+    /* -- WORK -- */
     #work { background: var(--bg); }
     .work-header {
       display: flex; justify-content: space-between;
@@ -431,7 +441,7 @@
     .project-card:hover .arrow-icon { background: var(--accent); border-color: var(--accent); }
     .project-card:hover .arrow-icon svg path { stroke: #000; }
 
-    /* ── ABOUT ── */
+    /* -- ABOUT -- */
     #about {
       background: var(--bg2);
       display: grid; grid-template-columns: 1fr 1fr;
@@ -468,7 +478,7 @@
       background: var(--accent); flex-shrink: 0;
     }
 
-    /* ── EXPERIENCE ── */
+    /* -- EXPERIENCE -- */
     #experience { background: var(--bg); }
     .exp-layout {
       display: grid; grid-template-columns: 1fr 2fr;
@@ -511,11 +521,11 @@
       line-height: 1.65; padding-left: 1.2rem; position: relative;
     }
     .exp-points li::before {
-      content: '→'; position: absolute; left: 0;
+      content: '?'; position: absolute; left: 0;
       color: var(--accent); font-size: 0.72rem; top: 0.1em;
     }
 
-    /* ── PROCESS ── */
+    /* -- PROCESS -- */
     #process { background: var(--bg2); }
     .process-header { text-align: center; max-width: 560px; margin: 0 auto 3rem; }
     .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
@@ -530,8 +540,7 @@
     .process-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.65rem; }
     .process-text { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
 
-    /* ── CONTACT ── */
-    html { scroll-padding-top: 80px; }
+    /* -- CONTACT -- */
     #contact {
       background: var(--bg);
       text-align: center; display: flex;
@@ -553,7 +562,7 @@
     }
     .contact-link:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     footer {
       padding: 2rem 4rem;
       border-top: 1px solid var(--border);
@@ -566,7 +575,7 @@
     .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
 
-    /* ── CURSOR ── */
+    /* -- CURSOR -- */
     .cursor {
       position: fixed; width: 8px; height: 8px; background: var(--accent);
       border-radius: 50%; pointer-events: none; z-index: 9999;
@@ -580,11 +589,11 @@
     }
     @media (hover: none) { .cursor, .cursor-ring { display: none !important; } }
 
-    /* ── FADE IN ── */
+    /* -- FADE IN -- */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
+    /* -- RESPONSIVE -- */
     @media (max-width: 1100px) {
       #hero { grid-template-columns: 1fr; min-height: auto; padding-bottom: 3rem; }
       .hero-right { display: none; }
@@ -594,7 +603,9 @@
     }
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
+      .nav-links { display: flex; }
+      .nav-links li { display: none; }
+      .nav-links li:last-child { display: block; }
       #hero, section, #achievements { padding: 5rem 1.5rem 3rem; }
       #about { grid-template-columns: 1fr; gap: 3rem; }
       .work-grid { grid-template-columns: 1fr; }
@@ -618,7 +629,7 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- ── NAV ── -->
+  <!-- -- NAV -- -->
   <nav>
     <a href="#" class="nav-logo">JF.</a>
     <ul class="nav-links">
@@ -630,7 +641,7 @@
     </ul>
   </nav>
 
-  <!-- ── HERO ── -->
+  <!-- -- HERO -- -->
   <section id="hero">
     <video autoplay loop muted playsinline poster="assets/thumbs/hero-backdrop-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25;z-index:0;pointer-events:none;">
       <source src="assets/videos/hero-backdrop.mp4" type="video/mp4" />
@@ -660,7 +671,7 @@
     </div>
   </section>
 
-  <!-- ── STATS ── -->
+  <!-- -- STATS -- -->
   <div class="stats-bar">
     <div class="stat-item fade-up">
       <div class="stat-num">10+</div>
@@ -680,7 +691,7 @@
     </div>
   </div>
 
-  <!-- ── MARQUEE ── -->
+  <!-- -- MARQUEE -- -->
   <div class="marquee-wrap">
     <div class="marquee-track">
       <span class="marquee-item"><span class="marquee-dot"></span>Brand Strategy</span>
@@ -706,7 +717,7 @@
     </div>
   </div>
 
-  <!-- ── KEY ACHIEVEMENTS ── -->
+  <!-- -- KEY ACHIEVEMENTS -- -->
   <section id="achievements">
     <div class="fade-up">
       <div class="section-label">Impact</div>
@@ -764,7 +775,7 @@
     </div>
   </section>
 
-  <!-- ── WORK ── -->
+  <!-- -- WORK -- -->
   <section id="work">
     <div class="work-header fade-up">
       <div>
@@ -789,7 +800,7 @@
           <div class="project-title">Kennedys Law, Digital Design Lead</div>
           <div class="project-desc">End-to-end brand and digital asset delivery for a global law firm, scalable brand guidelines, interactive client reports, motion content, and UX/UI website modules.</div>
           <div class="project-arrow">
-            <span class="project-year">2023 – Present · Kennedys Law LLP</span>
+            <span class="project-year">2023 � Present � Kennedys Law LLP</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -810,7 +821,7 @@
           <div class="project-title">Lane Clark & Peacock</div>
           <div class="project-desc">Integrated campaign assets, interactive Foleon publications, event branding, and microsites for a leading actuarial consultancy.</div>
           <div class="project-arrow">
-            <span class="project-year">2020 – 2022 · Lane Clark & Peacock LLP</span>
+            <span class="project-year">2020 � 2022 � Lane Clark & Peacock LLP</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -832,7 +843,7 @@
           <div class="project-title">Carbon Clean, Brand Progression</div>
           <div class="project-desc">Full brand modernisation for a global clean-energy company with international exhibition materials for Dubai, Italy, and Las Vegas.</div>
           <div class="project-arrow">
-            <span class="project-year">2019 – 2020 · Carbon Clean UK</span>
+            <span class="project-year">2019 � 2020 � Carbon Clean UK</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -852,9 +863,9 @@
             <span class="tag">UI Design</span>
           </div>
           <div class="project-title">Quikly, Brand Identity</div>
-          <div class="project-desc">A freelance project — a young entrepreneur approached me through word of mouth for a full brand identity for a fashion e-commerce platform. Logo, colour palette, typeface, and UI design built from scratch.</div>
+          <div class="project-desc">A freelance project � a young entrepreneur approached me through word of mouth for a full brand identity for a fashion e-commerce platform. Logo, colour palette, typeface, and UI design built from scratch.</div>
           <div class="project-arrow">
-            <span class="project-year">Brand Identity · Visual Design</span>
+            <span class="project-year">Brand Identity � Visual Design</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -877,7 +888,7 @@
           <div class="project-title">Built with Claude Code</div>
           <div class="project-desc">A portfolio website, social media generator, and live stock analyser, all built using Claude Code. Real, working products created through expert AI collaboration and senior design judgement.</div>
           <div class="project-arrow">
-            <span class="project-year">2024 – Present · AI-Assisted Development</span>
+            <span class="project-year">2024 � Present � AI-Assisted Development</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -899,7 +910,7 @@
           <div class="project-title">Video & Motion Work</div>
           <div class="project-desc">20+ videos spanning brand animation, social content, internal communications, and campaign films, built from scratch as an in-house capability at a global law firm.</div>
           <div class="project-arrow">
-            <span class="project-year">2018 – Present · Multi-brand</span>
+            <span class="project-year">2018 � Present � Multi-brand</span>
             <div class="arrow-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -910,7 +921,7 @@
     </div>
   </section>
 
-  <!-- ── ABOUT ── -->
+  <!-- -- ABOUT -- -->
   <section id="about">
     <div class="about-visual fade-up">
       <img src="assets/pick-10.jpg" alt="Creative strategy" loading="lazy" />
@@ -935,7 +946,7 @@
     </div>
   </section>
 
-  <!-- ── EXPERIENCE ── -->
+  <!-- -- EXPERIENCE -- -->
   <section id="experience">
     <div class="section-label fade-up">Career</div>
     <h2 class="section-title fade-up">Work Experience</h2>
@@ -945,12 +956,12 @@
         <p class="exp-intro">A decade of senior-level design experience across law, sustainability, finance, and media, with a consistent track record of delivering at global scale.</p>
         <div class="software-list">
           <div class="software-cat">Adobe Suite</div>
-          <div class="software-item">InDesign · Illustrator · Photoshop</div>
-          <div class="software-item">After Effects · Premiere Pro</div>
+          <div class="software-item">InDesign � Illustrator � Photoshop</div>
+          <div class="software-item">After Effects � Premiere Pro</div>
           <div class="software-cat">Digital / UI</div>
-          <div class="software-item">Figma · Adobe XD · Foleon</div>
+          <div class="software-item">Figma � Adobe XD � Foleon</div>
           <div class="software-cat">AI Tools</div>
-          <div class="software-item">Claude · Claude Code</div>
+          <div class="software-item">Claude � Claude Code</div>
           <div class="software-cat">Productivity</div>
           <div class="software-item">Microsoft 365</div>
           <div class="software-cat">Education</div>
@@ -962,8 +973,8 @@
       <div class="exp-list">
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">Kennedys Law LLP · London</span>
-            <span class="exp-dates">Jan 2023 – Present</span>
+            <span class="exp-company">Kennedys Law LLP � London</span>
+            <span class="exp-dates">Jan 2023 � Present</span>
           </div>
           <div class="exp-role">Senior Brand & Digital Designer / Design Lead</div>
           <ul class="exp-points">
@@ -976,8 +987,8 @@
         </div>
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">Lane Clark & Peacock LLP · London</span>
-            <span class="exp-dates">Mar 2020 – Dec 2022</span>
+            <span class="exp-company">Lane Clark & Peacock LLP � London</span>
+            <span class="exp-dates">Mar 2020 � Dec 2022</span>
           </div>
           <div class="exp-role">Senior Designer</div>
           <ul class="exp-points">
@@ -989,8 +1000,8 @@
         </div>
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">Carbon Clean UK · London</span>
-            <span class="exp-dates">Jan 2019 – Jan 2020</span>
+            <span class="exp-company">Carbon Clean UK � London</span>
+            <span class="exp-dates">Jan 2019 � Jan 2020</span>
           </div>
           <div class="exp-role">Lead Designer</div>
           <ul class="exp-points">
@@ -1001,8 +1012,8 @@
         </div>
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">The Motorsport Network · London</span>
-            <span class="exp-dates">Jan 2018 – Jan 2019</span>
+            <span class="exp-company">The Motorsport Network � London</span>
+            <span class="exp-dates">Jan 2018 � Jan 2019</span>
           </div>
           <div class="exp-role">Marketing Designer</div>
           <ul class="exp-points">
@@ -1012,8 +1023,8 @@
         </div>
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">FitFuelUK · London</span>
-            <span class="exp-dates">Jul 2016 – Dec 2017</span>
+            <span class="exp-company">FitFuelUK � London</span>
+            <span class="exp-dates">Jul 2016 � Dec 2017</span>
           </div>
           <div class="exp-role">In-House Designer</div>
           <ul class="exp-points">
@@ -1023,8 +1034,8 @@
         </div>
         <div class="exp-item fade-up">
           <div class="exp-meta">
-            <span class="exp-company">Bounts Limited · London</span>
-            <span class="exp-dates">Jun 2015 – Jun 2016</span>
+            <span class="exp-company">Bounts Limited � London</span>
+            <span class="exp-dates">Jun 2015 � Jun 2016</span>
           </div>
           <div class="exp-role">Graphic Designer</div>
           <ul class="exp-points">
@@ -1036,7 +1047,7 @@
     </div>
   </section>
 
-  <!-- ── PROCESS ── -->
+  <!-- -- PROCESS -- -->
   <section id="process">
     <div class="process-header fade-up">
       <div class="section-label">How I Work</div>
@@ -1066,7 +1077,7 @@
     </div>
   </section>
 
-  <!-- ── CONTACT ── -->
+  <!-- -- CONTACT -- -->
   <section id="contact">
     <div class="section-label fade-up">Let's Talk</div>
     <h2 class="section-title fade-up">Have a project<br>in mind?</h2>
@@ -1074,7 +1085,7 @@
       Open to full-time roles and freelance engagements. Let's build something great together.
     </p>
     <div class="contact-links fade-up">
-      <a href="mailto:jordanfemi@hotmail.com" class="contact-link" onclick="window.location.href='mailto:jordanfemi@hotmail.com'">
+      <a href="mailto:jordanfemi@hotmail.com" class="contact-link">
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#c084fc" stroke-width="1.3"/><path d="M1 5l7 5 7-5" stroke="#c084fc" stroke-width="1.3"/></svg>
         jordanfemi@hotmail.com
       </a>
@@ -1093,10 +1104,10 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
+  <!-- -- FOOTER -- -->
   <footer>
     <a href="#" class="footer-logo">JF.</a>
-    <div class="footer-copy">© 2026 Jordan Femi-Famakinwa · Senior Brand & Digital Designer · London</div>
+    <div class="footer-copy">� 2026 Jordan Femi-Famakinwa � Senior Brand & Digital Designer � London</div>
     <div class="footer-links">
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -1106,7 +1117,7 @@
   </footer>
 
   <script>
-    // ── Custom cursor ──
+    // -- Custom cursor --
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursorRing');
     document.addEventListener('mousemove', e => {
@@ -1130,7 +1141,7 @@
       });
     });
 
-    // ── Scroll fade-in ──
+    // -- Scroll fade-in --
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting)
@@ -1139,28 +1150,19 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Fast scroll to contact — bypasses slow CSS smooth scroll
+    // Scroll to contact � uses actual nav height for reliable mobile behaviour
     document.querySelectorAll('a[href="#contact"]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         document.querySelectorAll('#contact .fade-up').forEach(el => el.classList.add('visible'));
         const target = document.getElementById('contact');
-        const start = window.scrollY;
-        const end = target.getBoundingClientRect().top + window.scrollY - 80;
-        const duration = 400;
-        let startTime = null;
-        function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-        function step(ts) {
-          if (!startTime) startTime = ts;
-          const progress = Math.min((ts - startTime) / duration, 1);
-          window.scrollTo(0, start + (end - start) * easeInOut(progress));
-          if (progress < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
+        const navHeight = document.querySelector('nav').getBoundingClientRect().height;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
       });
     });
 
-    // ── Active nav highlight ──
+    // -- Active nav highlight --
     const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     const io = new IntersectionObserver(entries => {
