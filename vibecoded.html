@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,35 +14,48 @@
   <meta property="og:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-19CZ6Z5MK8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-19CZ6Z5MK8');
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --accent:#c084fc; --text:#f0f0f0; --muted:#888; --border:#2a2a2a; }
+    :root { --bg:#FFFFFF; --bg2:#F8F8F8; --bg3:#F0F0F0; --accent:#222222; --text:#222222; --muted:#7B7B7B; --border:#E8E8E8; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    body { font-family: 'Aeonik', sans-serif; background: var(--bg); color: var(--text); }
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.25rem 4rem; background: rgba(10,10,10,0.88); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 4rem; background: #fff;
     }
     .nav-back { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
-    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--accent); text-decoration: none; }
-    .nav-cta { background: var(--accent); color: #000; padding: 0.55rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; text-decoration: none; }
+    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--accent); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-cta { background: var(--accent); color: #fff; padding: 0.55rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; text-decoration: none; }
 
     /* HERO */
-    .project-hero {
+    .project-hero { background: #1a1a1a;
       min-height: 70vh; display: flex; flex-direction: column;
       justify-content: flex-end; padding: 10rem 4rem 4rem;
       position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
@@ -60,28 +73,28 @@
     .hero-video-bg::-webkit-media-controls-enclosure { display: none !important; }
     .hero-video-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
+      background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.55) 100%);
     }
     .hero-bg-orb {
       position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
     }
-    .hero-bg-orb-1 { width: 500px; height: 500px; background: rgba(192,132,252,0.2); top: -100px; right: 5%; animation: orbFloat 8s ease-in-out infinite; }
-    .hero-bg-orb-2 { width: 300px; height: 300px; background: rgba(100,50,200,0.15); bottom: -50px; left: 10%; animation: orbFloat 6s ease-in-out infinite 1s; }
+    .hero-bg-orb-1 { width: 500px; height: 500px; background: rgba(34,34,34,0.04); top: -100px; right: 5%; animation: orbFloat 8s ease-in-out infinite; }
+    .hero-bg-orb-2 { width: 300px; height: 300px; background: rgba(34,34,34,0.04); bottom: -50px; left: 10%; animation: orbFloat 6s ease-in-out infinite 1s; }
     @keyframes orbFloat { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px,-40px); } }
     .hero-content { position: relative; z-index: 3; max-width: 900px; }
     .hero-bg-orb { z-index: 2; }
-    .project-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
-    .project-eyebrow::before { content: ''; width: 2rem; height: 2px; background: var(--accent); display: inline-block; }
-    .project-hero h1 { font-size: clamp(2.8rem, 6vw, 6rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 1.5rem; }
-    .project-hero h1 span { color: var(--accent); }
+    .project-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { display: none; }
+    .project-hero h1 { color: #fff; font-size: clamp(2.8rem, 6vw, 6rem); font-weight: 400; letter-spacing: 0; line-height: 1.1; margin-bottom: 1.5rem; }
+    .project-hero h1 span { color: rgba(255,255,255,0.65); }
     .hero-sub { font-size: 1rem; color: var(--muted); max-width: 600px; line-height: 1.75; margin-bottom: 2rem; }
-    .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(192,132,252,0.07); padding: 0.22rem 0.6rem; border-radius: 100px; border: 1px solid rgba(192,132,252,0.18); }
+    .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: #F8F8F8; padding: 0.22rem 0.6rem; border-radius: 100px; border: 1px solid #E8E8E8; }
     .tags-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     /* SECTIONS */
     .case-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
     .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; letter-spacing: 0; line-height: 1.15; margin-bottom: 1.5rem; }
     .body-text { font-size: 0.95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
     .two-col-3 { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
     .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: stretch; }
@@ -96,14 +109,14 @@
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, calc(-50% - 20px));
       width: 64px; height: 64px;
-      background: rgba(192,132,252,0.9);
+      background: rgba(34,34,34,0.9);
       border-radius: 50%; display: flex;
       align-items: center; justify-content: center;
       z-index: 2; pointer-events: auto; cursor: pointer;
       transition: opacity 0.2s, transform 0.2s, background 0.2s;
-      box-shadow: 0 4px 24px rgba(192,132,252,0.4);
+      box-shadow: 0 4px 24px rgba(34,34,34,0.15);
     }
-    .tool-media .play-btn:hover { background: rgba(192,132,252,1); transform: translate(-50%, calc(-50% - 20px)) scale(1.08); }
+    .tool-media .play-btn:hover { background: #222222; transform: translate(-50%, calc(-50% - 20px)) scale(1.08); }
     .tool-media .play-btn svg { margin-left: 4px; }
     .tool-card.playing .play-btn { opacity: 0; pointer-events: none; }
 
@@ -114,7 +127,7 @@
       overflow: hidden;
       transition: border-color 0.25s;
     }
-    .tool-card:hover { border-color: rgba(192,132,252,0.4); }
+    .tool-card:hover { border-color: rgba(34,34,34,0.15); }
 
     /* Video/Screen placeholder */
     .tool-media {
@@ -127,7 +140,6 @@
       justify-content: center;
       gap: 1rem;
       border-bottom: 1px solid var(--border);
-      position: relative;
       overflow: hidden;
     }
     .tool-media.has-embed { padding: 0; }
@@ -158,7 +170,7 @@
       padding: 0.3rem 0.8rem; border-radius: 100px;
     }
     .badge-live { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
-    .badge-private { background: rgba(192,132,252,0.1); color: var(--accent); border: 1px solid rgba(192,132,252,0.2); }
+    .badge-private { background: rgba(34,34,34,0.04); color: var(--accent); border: 1px solid rgba(34,34,34,0.04); }
     .tool-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; max-width: 720px; }
     .tool-meta { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--border); }
     .meta-pair { display: flex; flex-direction: column; gap: 0.2rem; }
@@ -176,8 +188,8 @@
     /* CLOSING */
     .next-project { padding: 5rem 4rem; background: var(--bg2); display: flex; justify-content: space-between; align-items: center; }
     .next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-    .next-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
-    .btn-primary { background: var(--accent); color: #000; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
+    .next-title { font-size: 2rem; font-weight: 400; letter-spacing: 0; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
     .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
     .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -191,18 +203,39 @@
       .tools-grid { grid-template-columns: 1fr !important; }
       .next-project { flex-direction: column; gap: 2rem; align-items: flex-start; }
     }
+  
+    /* ── PROJECT NAV STRIP ─────────────────────────────── */
+    .project-nav-strip {
+      position: fixed; top: 0; z-index: 99;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      left: 0; right: 0;
+      padding: 0.65rem 4rem;
+      background: rgba(34,34,34,0.5);
+      font-size: 0.75rem; font-weight: 500;
+    }
+    .pnav-prev { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: left; }
+    .pnav-next { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: right; }
+    .pnav-prev:hover, .pnav-next:hover { color: #fff; }
+    .pnav-count { color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.05em; text-align: center; }
+    .pnav-placeholder { min-width: 80px; }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="index.html" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Portfolio
     </a>
     <a href="index.html" class="nav-logo">JF.</a>
     <a href="index.html#contact" class="nav-cta">Hire Me</a>
   </nav>
+
+    <div class="project-nav-strip">
+  <a href="quikly.html" class="pnav-prev">&#8592; Quikly</a>
+  <span class="pnav-count">5 / 6 projects</span>
+  <a href="showreel.html" class="pnav-next">Video &amp; Motion &#8594;</a>
+  </div>
 
   <!-- HERO -->
   <div class="project-hero">
@@ -215,7 +248,7 @@
     <div class="hero-bg-orb hero-bg-orb-2"></div>
     <div class="hero-content">
       <div class="project-eyebrow">AI-Assisted Development</div>
-      <h1>Built with<br><span>Claude Code</span></h1>
+      <h1>Built with <br><span>Claude Code</span></h1>
       <p class="hero-sub">
         A collection of tools and products built entirely through vibe coding with Claude Code. No traditional development background. Just a designer who identified real problems, scoped the solutions, and shipped them.
       </p>
@@ -234,7 +267,7 @@
     <div class="two-col-3">
       <div>
         <div class="section-label">Overview</div>
-        <h2 class="section-title">A designer<br>who builds.</h2>
+        <h2 class="section-title">A designer <br>who builds.</h2>
       </div>
       <div>
         <p class="body-text">Most designers design tools. I build them. Using Claude Code as my development partner, I have shipped functional, production-ready products across multiple disciplines: from financial analysis to social content generation to this portfolio itself. Each project started with a real problem, a clear brief, and a conversation with an AI. What came out the other side was working software.</p>
@@ -251,7 +284,7 @@
       </div>
       <div>
         <div class="section-label">Proof of concept</div>
-        <h2 class="section-title">You are already<br>looking at it.</h2>
+        <h2 class="section-title">You are already <br>looking at it.</h2>
         <p class="body-text" style="margin-top:1.25rem">This portfolio is the most direct evidence of what expert vibe coding with Claude Code looks like in practice. Every section, every project page, every video embed, animation, layout decision, and interaction was produced through a precise, design-led conversation between my creative direction and Claude.</p>
         <p class="body-text" style="margin-top:1rem">Knowing how to use Claude Code at this level is a skill in itself. It is not about prompting. It is about knowing exactly what to ask for, understanding when the output is right and when it needs pushing further, applying senior design judgement at every stage, and shaping what comes out into something that looks considered, intentional, and professional. That combination of AI fluency and design expertise is rare, and it is what separates someone who can vibe code from someone who can vibe code well.</p>
         <p class="body-text" style="margin-top:1rem">The result is a fully responsive, multi-page portfolio with embedded video, animated backgrounds, a custom design system, and a GitHub-to-Netlify deployment pipeline, built in a matter of days. You need someone who knows design deeply to get output like this. Claude Code is the tool. The expertise is mine.</p>
@@ -325,7 +358,7 @@
     <div class="two-col-3">
       <div>
         <div class="section-label">What this means</div>
-        <h2 class="section-title">Design is<br>just the<br>beginning.</h2>
+        <h2 class="section-title">Design is <br>just the <br>beginning.</h2>
       </div>
       <div>
         <p class="body-text">Ten years ago, a designer who could also write code was unusual. Today, a designer who can build production software using AI is genuinely rare. These projects are not side experiments. They are evidence of a shift in what a senior designer can do, and should do, when given the right tools.</p>
@@ -339,7 +372,7 @@
       <div class="next-label">Next Project</div>
       <div class="next-title">Kennedys Law LLP</div>
     </div>
-    <a href="kennedys.html" class="btn-primary">View Project ?</a>
+    <a href="kennedys.html" class="btn-primary">View Project</a>
   </div>
 
   <script>
@@ -347,7 +380,23 @@
       entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
   <script>
     document.querySelectorAll('.play-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -361,9 +410,35 @@
       video.addEventListener('pause', () => item.classList.remove('playing'));
       video.addEventListener('ended', () => item.classList.remove('playing'));
     });
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,34 +14,47 @@
   <meta property="og:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-19CZ6Z5MK8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-19CZ6Z5MK8');
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --accent:#c084fc; --text:#f0f0f0; --muted:#888; --border:#2a2a2a; }
+    :root { --bg:#FFFFFF; --bg2:#F8F8F8; --bg3:#F0F0F0; --accent:#222222; --text:#222222; --muted:#7B7B7B; --border:#E8E8E8; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    body { font-family: 'Aeonik', sans-serif; background: var(--bg); color: var(--text); }
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.25rem 4rem; background: rgba(10,10,10,0.88); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 4rem; background: #fff;
     }
     .nav-back { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
-    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--accent); text-decoration: none; }
-    .nav-cta { background: var(--accent); color: #000; padding: 0.55rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; text-decoration: none; }
+    .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--accent); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-cta { background: var(--accent); color: #fff; padding: 0.55rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; text-decoration: none; }
 
-    .project-hero {
+    .project-hero { background: #1a1a1a;
       min-height: 60vh; display: flex; flex-direction: column;
       justify-content: flex-end; padding: 10rem 4rem 4rem;
       position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
@@ -59,22 +72,22 @@
     .hero-video-bg::-webkit-media-controls-enclosure { display: none !important; }
     .hero-video-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(20,5,45,0.6) 50%, rgba(10,10,10,0.75) 100%);
+      background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.55) 100%);
     }
     .hero-content { position: relative; z-index: 2; max-width: 800px; }
-    .project-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
-    .project-eyebrow::before { content: ''; width: 2rem; height: 2px; background: var(--accent); display: inline-block; }
-    .project-hero h1 { font-size: clamp(2.8rem, 6vw, 6rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 1.5rem; }
-    .project-hero h1 span { color: var(--accent); }
+    .project-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { display: none; }
+    .project-hero h1 { color: #fff; font-size: clamp(2.8rem, 6vw, 6rem); font-weight: 400; letter-spacing: 0; line-height: 1.1; margin-bottom: 1.5rem; }
+    .project-hero h1 span { color: rgba(255,255,255,0.65); }
     .project-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .meta-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
-    .meta-value { font-size: 0.9rem; font-weight: 500; color: var(--text); }
-    .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(192,132,252,0.07); padding: 0.22rem 0.6rem; border-radius: 100px; border: 1px solid rgba(192,132,252,0.18); }
+    .meta-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.9); }
+    .tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: #F8F8F8; padding: 0.22rem 0.6rem; border-radius: 100px; border: 1px solid #E8E8E8; }
     .tags-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     .case-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
     .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; letter-spacing: 0; line-height: 1.15; margin-bottom: 1.5rem; }
     .body-text { font-size: 0.95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
     .two-col-3 { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
 
@@ -97,8 +110,8 @@
 
     .next-project { padding: 5rem 4rem; background: var(--bg2); display: flex; justify-content: space-between; align-items: center; }
     .next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-    .next-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
-    .btn-primary { background: var(--accent); color: #000; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
+    .next-title { font-size: 2rem; font-weight: 400; letter-spacing: 0; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
     .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
     .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -132,7 +145,7 @@
       transform: translate(-50%, calc(-50% - 20px));
       width: 64px;
       height: 64px;
-      background: rgba(192,132,252,0.9);
+      background: rgba(34,34,34,0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -141,24 +154,47 @@
       pointer-events: auto;
       cursor: pointer;
       transition: opacity 0.2s, transform 0.2s, background 0.2s;
-      box-shadow: 0 4px 24px rgba(192,132,252,0.4);
+      box-shadow: 0 4px 24px rgba(34,34,34,0.15);
     }
-    .play-btn:hover { background: rgba(192,132,252,1); transform: translate(-50%, calc(-50% - 20px)) scale(1.08); }
+    .play-btn:hover { background: #222222; transform: translate(-50%, calc(-50% - 20px)) scale(1.08); }
     .play-btn svg { margin-left: 4px; }
     .video-item.playing .play-btn { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
     .video-label { position: relative; z-index: 3; }
+  
+    /* ── PROJECT NAV STRIP ─────────────────────────────── */
+    .project-nav-strip {
+      position: fixed; top: 0; z-index: 99;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      left: 0; right: 0;
+      padding: 0.65rem 4rem;
+      background: rgba(34,34,34,0.5);
+      font-size: 0.75rem; font-weight: 500;
+    }
+    .pnav-prev { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: left; }
+    .pnav-next { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: right; }
+    .pnav-prev:hover, .pnav-next:hover { color: #fff; }
+    .pnav-count { color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.05em; text-align: center; }
+    .pnav-placeholder { min-width: 80px; }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="index.html" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Portfolio
     </a>
     <a href="index.html" class="nav-logo">JF.</a>
     <a href="index.html#contact" class="nav-cta">Hire Me</a>
   </nav>
+
+  <div class="project-nav-strip">
+  <a href="vibecoded.html" class="pnav-prev">&#8592; Built with Claude Code</a>
+  <span class="pnav-count">6 / 6 projects</span>
+  <span class="pnav-placeholder"></span>
+  </div>
+
+
 
   <div class="project-hero">
     <video class="hero-video-bg" autoplay loop muted playsinline>
@@ -168,7 +204,7 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="project-eyebrow">Motion Graphics & Video Production</div>
-      <h1>Video &amp;<br><span>Motion</span><br>Work</h1>
+      <h1>Video &amp; <br><span>Motion</span> <br>Work</h1>
       <div class="project-meta">
         <div class="meta-item">
           <div class="meta-label">Discipline</div>
@@ -176,7 +212,7 @@
         </div>
         <div class="meta-item">
           <div class="meta-label">Tools</div>
-          <div class="meta-value">After Effects � Premiere Pro</div>
+          <div class="meta-value">After Effects - Premiere Pro</div>
         </div>
       </div>
       <div class="tags-row">
@@ -252,7 +288,7 @@
       <div class="next-label">Next Project</div>
       <div class="next-title">Built with Claude Code</div>
     </div>
-    <a href="vibecoded.html" class="btn-primary">View Project ?</a>
+    <a href="vibecoded.html" class="btn-primary">View Project</a>
   </div>
 
   <script>
@@ -260,7 +296,23 @@
       entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
 
   <script>
     document.querySelectorAll('.play-btn').forEach(btn => {
@@ -275,9 +327,35 @@
       video.addEventListener('pause', () => item.classList.remove('playing'));
       video.addEventListener('ended', () => item.classList.remove('playing'));
     });
-  </script>
+
+    // Stack the project nav strip flush below the fixed nav
+    function sizeHeaderStack() {
+      var nav = document.querySelector('nav');
+      var strip = document.querySelector('.project-nav-strip');
+      if (!nav || !strip) return;
+      var navH = nav.offsetHeight;
+      strip.style.top = navH + 'px';
+      document.body.style.paddingTop = navH + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', sizeHeaderStack);
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(sizeHeaderStack);
+      }
+    });
+    window.addEventListener('resize', sizeHeaderStack);  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
