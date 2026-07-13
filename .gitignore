@@ -1,7 +1,13 @@
-# Large video files - deploy via Netlify Drop
-assets/videos/*.mp4
-assets/videos/*.mov
-assets/videos/*.webm
+# Large video files (>50MB) - too big for GitHub
+assets/videos/showreel-*.mp4
+assets/videos/kspl-*.mp4
+assets/videos/kennedys-intro.mp4
+assets/videos/kennedys-townhall.mp4
+assets/videos/claude-hero-bg.mov
+assets/videos/social-media-tool.mp4
+assets/videos/social-media-tool-web.mp4
+
+# Allow small hero bg + content videos (all under 50MB)
 
 # Original source files
 Updates Assets/
