@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Video & Motion Work, Jordan Femi-Famakinwa</title>
   <meta name="description" content="Video and motion work portfolio: brand films, motion graphics, social content, and campaign videos using After Effects and Premiere Pro." />
@@ -95,7 +94,7 @@
     .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
     .video-item {
       border-radius: 0.75rem; overflow: hidden;
-      border: 1px solid var(--border); background: #000;
+      border: 1px solid var(--border); background: #fff;
       transition: border-color 0.25s;
     }
     .video-item:hover { border-color: var(--accent); }
@@ -168,13 +167,16 @@
       left: 0; right: 0;
       padding: 0.65rem 4rem;
       background: rgba(34,34,34,0.5);
-      font-size: 0.75rem; font-weight: 500;
+      font-size: 0.7rem; font-weight: 500;
     }
     .pnav-prev { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: left; }
     .pnav-next { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; text-align: right; }
     .pnav-prev:hover, .pnav-next:hover { color: #fff; }
     .pnav-count { color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.05em; text-align: center; }
     .pnav-placeholder { min-width: 80px; }
+    @media (max-width: 900px) {
+      .project-nav-strip { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
   </style>
 </head>
 <body>
