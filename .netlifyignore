@@ -1,11 +1,10 @@
 # WARNING: Netlify does NOT honour this file for static files deployed with
-# `netlify deploy --prod --dir=.`. Verified 2026-08-28: index.backup.html and
-# kennedys.backup.html are listed below yet still return 200 on the live site.
-# To keep a file off the live site, move it OUT of this folder.
+# `netlify deploy --prod --dir=.`. Verified 2026-08-28: files listed here still
+# deployed and returned 200 on the live site.
+# The ONLY reliable way to keep a file off the live site is to move it OUT of
+# this folder. Old versions now live in C:\Users\jorda\portfolio-backups\ 
 # Parked experiments now live in C:\Users\jorda\portfolio-experiments\ 
 
 Updates Assets/
-index.backup.html
-kennedys.backup.html
 assets/videos/claude-hero-bg.mov
 .netlify/
