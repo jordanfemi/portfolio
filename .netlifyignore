@@ -3,8 +3,8 @@
 # deployed and returned 200 on the live site.
 # The ONLY reliable way to keep a file off the live site is to move it OUT of
 # this folder. Old versions now live in C:\Users\jorda\portfolio-backups\ 
-# Parked experiments now live in C:\Users\jorda\portfolio-experiments\ 
+# Parked experiments: C:\Users\jorda\portfolio-experiments\ 
+# Raw source footage ("Updates Assets", 3.8 GB): C:\Users\jorda\portfolio-source-assets\ 
 
-Updates Assets/
 assets/videos/claude-hero-bg.mov
 .netlify/
