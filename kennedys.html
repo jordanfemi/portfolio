@@ -468,17 +468,46 @@
     .phone-caption { font-size: 0.72rem; line-height: 1.5; color: var(--muted); text-align: center; }
 
     /* static social posts, shown at their real 4:5 */
+    /* 16 posts, fixed 4 x 4. Twelve stills and four carousels that page
+       inside their own tile, so every cell stays the same height. */
     .social-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1rem; margin-top: 2.5rem;
     }
-    .social-grid img {
+    .social-grid > img {
       width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover;
       border-radius: 0.75rem; border: 1px solid var(--border);
     }
-    .carousel-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-    .carousel-pair .carousel-slide img { aspect-ratio: 4 / 5; object-fit: contain; background: var(--bg3); }
-    #fy26Carousel .carousel-slide img { aspect-ratio: 3 / 4; }
+    .social-carousel { margin-top: 0; aspect-ratio: 4 / 5; }
+    .social-carousel .carousel-track, .social-carousel .carousel-slide { height: 100%; }
+    .social-carousel .carousel-slide img {
+      width: 100%; height: 100%; aspect-ratio: auto;
+      object-fit: cover; object-position: top;
+    }
+    .social-carousel .carousel-btn {
+      width: 30px; height: 30px; font-size: 0.8rem;
+      opacity: 0; transition: opacity 0.2s, background 0.2s;
+    }
+    .social-carousel:hover .carousel-btn,
+    .social-carousel:focus-within .carousel-btn { opacity: 1; }
+    .social-carousel .carousel-prev { left: 0.4rem; }
+    .social-carousel .carousel-next { right: 0.4rem; }
+    /* slide count, so a carousel tile reads as one before it is touched */
+    .carousel-count {
+      position: absolute; top: 0.55rem; right: 0.55rem; z-index: 2;
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.55);
+      padding: 0.2rem 0.45rem; border-radius: 999px; pointer-events: none;
+    }
+    /* dots sit over the image so carousel tiles match the still tiles */
+    .social-carousel .carousel-dots {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 0.5rem;
+      z-index: 2; background: linear-gradient(transparent, rgba(0,0,0,0.35));
+    }
+    .social-carousel .carousel-dot { background: rgba(255,255,255,0.45); }
+    .social-carousel .carousel-dot.active { background: #fff; }
+    @media (max-width: 900px) { .social-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 620px) { .social-grid { grid-template-columns: repeat(2, 1fr); } }
 
     /* infographics: wide, detailed, so give them room */
     .infographic { margin-top: 2.5rem; }
@@ -491,7 +520,6 @@
       font-size: 0.72rem; color: var(--muted); margin-top: 0.7rem; line-height: 1.6;
     }
     @media (max-width: 760px) {
-      .carousel-pair { grid-template-columns: 1fr; }
       .phone-row { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
     }
   </style>
@@ -608,7 +636,6 @@
     </div>
 
     <div class="campaign-channel">
-      <div class="campaign-channel-label">Social Video Post</div>
       <div class="campaign-video-row" style="margin-top:0">
         <div>
           <div class="video-item" style="margin-top:0">
@@ -696,45 +723,116 @@
   <section class="case-section fade-up">
     <div class="section-label">Social Media</div>
     <h2 class="section-title">One voice <br>across every post</h2>
-    <p class="body-text">Social is where the firm appears most often, so the job is consistency rather than novelty. These run across recruitment, conferences, awards and sector insight, every one built on the same grid, type scale and colour rules, so the firm reads as one organisation wherever it posts. The same system is packaged as templates, which lets teams in other offices produce their own without the brand drifting.</p>
+    <p class="body-text">Social is where the firm appears most often, so the job is consistency rather than novelty. These run across promotions, awards, pro bono work, conferences, recruitment and sector insight, every one built on the same grid, type scale and colour rules, so the firm reads as one organisation wherever it posts. Four are carousels: use the arrows to page through them. The same system is packaged as templates, which lets teams in other offices produce their own without the brand drifting.</p>
     <div class="social-grid">
-      <img src="assets/kennedys/social-promotions.jpg" alt="Senior promotions announcement post" loading="lazy" />
+      <img src="assets/kennedys/social-promotions-1.jpg" alt="Senior promotions announcement post" loading="lazy" />
+      <img src="assets/kennedys/social-promotions-2.jpg" alt="Senior promotions announcement post, second variant" loading="lazy" />
+      <img src="assets/kennedys/social-promotions-3.jpg" alt="Senior promotions announcement post, third variant" loading="lazy" />
+      <div class="carousel-viewer social-carousel" id="pecCarousel">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-1.jpg" alt="Team introduction carousel, slide 1" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-2.jpg" alt="Team introduction carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-3.jpg" alt="Team introduction carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-4.jpg" alt="Team introduction carousel, slide 4" loading="lazy" /></div>
+        </div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;pecCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
+        <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;pecCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
+        <div class="carousel-count">4 slides</div>
+        <div class="carousel-dots"></div>
+      </div>
       <img src="assets/kennedys/social-shortlisted.jpg" alt="Client Service Firm of the Year shortlist post" loading="lazy" />
+      <img src="assets/kennedys/social-award-wilkinson.jpg" alt="David Wilkinson Award post" loading="lazy" />
+      <img src="assets/kennedys/social-probono-1.jpg" alt="Pro Bono Recognition List post" loading="lazy" />
+      <div class="carousel-viewer social-carousel" id="fy26Carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-1.jpg" alt="FY26 highlights carousel, slide 1" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-2.jpg" alt="FY26 highlights carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-3.jpg" alt="FY26 highlights carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-4.jpg" alt="FY26 highlights carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-5.jpg" alt="FY26 highlights carousel, slide 5" loading="lazy" /></div>
+        </div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;fy26Carousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
+        <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;fy26Carousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
+        <div class="carousel-count">5 slides</div>
+        <div class="carousel-dots"></div>
+      </div>
+      <img src="assets/kennedys/social-probono-2.jpg" alt="Pro Bono Recognition List post, second variant" loading="lazy" />
+      <img src="assets/kennedys/social-probono-3.jpg" alt="Pro Bono Recognition List post, third variant" loading="lazy" />
       <img src="assets/kennedys/social-bogota.jpg" alt="Bogota claims seminar registration post" loading="lazy" />
       <img src="assets/kennedys/social-cargo.jpg" alt="Cargo conference post" loading="lazy" />
-      <img src="assets/kennedys/social-graduate.jpg" alt="Graduate recruitment post, Australia" loading="lazy" />
       <img src="assets/kennedys/social-hongkong-esg.jpg" alt="Hong Kong and ESG insight post" loading="lazy" />
-    </div>
-
-    <div class="carousel-pair">
-      <div>
-        <div class="campaign-channel-label" style="margin-top:0.5rem">Carousel: FY26 Highlights</div>
-        <div class="carousel-viewer" id="fy26Carousel">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-1.jpg" alt="FY26 highlights carousel slide 1" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-2.jpg" alt="FY26 highlights carousel slide 2" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-3.jpg" alt="FY26 highlights carousel slide 3" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-4.jpg" alt="FY26 highlights carousel slide 4" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-5.jpg" alt="FY26 highlights carousel slide 5" loading="lazy" /></div>
-          </div>
-          <button class="carousel-btn carousel-prev" onclick="carouselMove('fy26Carousel', -1)">&#8592;</button>
-          <button class="carousel-btn carousel-next" onclick="carouselMove('fy26Carousel', 1)">&#8594;</button>
-          <div class="carousel-dots"></div>
+      <img src="assets/kennedys/social-graduate.jpg" alt="Graduate recruitment post, Australia" loading="lazy" />
+      <div class="carousel-viewer social-carousel" id="earlyCareersCarousel">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-1.jpg" alt="Early careers carousel, slide 1" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-2.jpg" alt="Early careers carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-3.jpg" alt="Early careers carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-4.jpg" alt="Early careers carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-5.jpg" alt="Early careers carousel, slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-6.jpg" alt="Early careers carousel, slide 6" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-7.jpg" alt="Early careers carousel, slide 7" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-8.jpg" alt="Early careers carousel, slide 8" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-9.jpg" alt="Early careers carousel, slide 9" loading="lazy" /></div>
         </div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;earlyCareersCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
+        <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;earlyCareersCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
+        <div class="carousel-count">9 slides</div>
+        <div class="carousel-dots"></div>
       </div>
-      <div>
-        <div class="campaign-channel-label" style="margin-top:0.5rem">Carousel: Team Introduction</div>
-        <div class="carousel-viewer" id="pecCarousel">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-1.jpg" alt="Team introduction carousel slide 1" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-2.jpg" alt="Team introduction carousel slide 2" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-3.jpg" alt="Team introduction carousel slide 3" loading="lazy" /></div>
-            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-4.jpg" alt="Team introduction carousel slide 4" loading="lazy" /></div>
-          </div>
-          <button class="carousel-btn carousel-prev" onclick="carouselMove('pecCarousel', -1)">&#8592;</button>
-          <button class="carousel-btn carousel-next" onclick="carouselMove('pecCarousel', 1)">&#8594;</button>
-          <div class="carousel-dots"></div>
+      <div class="carousel-viewer social-carousel" id="volunteersCarousel">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-1.jpg" alt="Volunteers Week carousel, slide 1" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-2.jpg" alt="Volunteers Week carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-3.jpg" alt="Volunteers Week carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-4.jpg" alt="Volunteers Week carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-5.jpg" alt="Volunteers Week carousel, slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-6.jpg" alt="Volunteers Week carousel, slide 6" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-7.jpg" alt="Volunteers Week carousel, slide 7" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-8.jpg" alt="Volunteers Week carousel, slide 8" loading="lazy" /></div>
         </div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;volunteersCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
+        <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;volunteersCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
+        <div class="carousel-count">8 slides</div>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTION WORK -->
+  <section class="case-section fade-up">
+    <div class="section-label">Concept Work</div>
+    <h2 class="section-title">Website redesign <br>proposals.</h2>
+    <p class="body-text">Three homepage concepts developed as part of an upcoming Kennedys brand refresh. Proposed directions exploring how the firm's digital presence could evolve to better reflect its global scale and creative ambition.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-window">
+          <picture>
+            <source srcset="assets/kennedys-concept-1.webp" type="image/webp" />
+            <img src="assets/kennedys-concept-1.png" alt="Kennedys Website Redesign Concept 1" loading="lazy" />
+          </picture>
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept A</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-window">
+          <picture>
+            <source srcset="assets/kennedys-concept-2.webp" type="image/webp" />
+            <img src="assets/kennedys-concept-2.png" alt="Kennedys Website Redesign Concept 2" loading="lazy" />
+          </picture>
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept B</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-window">
+          <picture>
+            <source srcset="assets/kennedys-concept-3.webp" type="image/webp" />
+            <img src="assets/kennedys-concept-3.png" alt="Kennedys Website Redesign Concept 3" loading="lazy" />
+          </picture>
+          <div class="concept-fade"></div>
+        </div>
+        <div class="concept-label">Concept C</div>
       </div>
     </div>
   </section>
@@ -866,45 +964,6 @@
           </video>
           <div class="video-label">Town Hall</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MOTION WORK -->
-  <section class="case-section fade-up">
-    <div class="section-label">Concept Work</div>
-    <h2 class="section-title">Website redesign <br>proposals.</h2>
-    <p class="body-text">Three homepage concepts developed as part of an upcoming Kennedys brand refresh. Proposed directions exploring how the firm's digital presence could evolve to better reflect its global scale and creative ambition.</p>
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-window">
-          <picture>
-            <source srcset="assets/kennedys-concept-1.webp" type="image/webp" />
-            <img src="assets/kennedys-concept-1.png" alt="Kennedys Website Redesign Concept 1" loading="lazy" />
-          </picture>
-          <div class="concept-fade"></div>
-        </div>
-        <div class="concept-label">Concept A</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-window">
-          <picture>
-            <source srcset="assets/kennedys-concept-2.webp" type="image/webp" />
-            <img src="assets/kennedys-concept-2.png" alt="Kennedys Website Redesign Concept 2" loading="lazy" />
-          </picture>
-          <div class="concept-fade"></div>
-        </div>
-        <div class="concept-label">Concept B</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-window">
-          <picture>
-            <source srcset="assets/kennedys-concept-3.webp" type="image/webp" />
-            <img src="assets/kennedys-concept-3.png" alt="Kennedys Website Redesign Concept 3" loading="lazy" />
-          </picture>
-          <div class="concept-fade"></div>
-        </div>
-        <div class="concept-label">Concept C</div>
       </div>
     </div>
   </section>
