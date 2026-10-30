@@ -330,11 +330,19 @@
        tap on the video is how the native controls are summoned, so the
        faded play button has to stop intercepting once playback starts. */
     .tool-card.playing .play-btn { pointer-events: none; }
-    /* The browser draws its own centred play button over a poster frame.
-       Stacked on ours it read as two players, so hide the native one and
-       keep the control bar. */
-    .tool-media video::-webkit-media-controls-overlay-play-button { display: none !important; }
-    .tool-media video::-webkit-media-controls-start-playback-button { display: none !important; }
+    /* A POINTER DEVICE keeps the branded button, so the browser's own
+       centred one is hidden to stop the two stacking. */
+    @media (hover: hover) and (pointer: fine) {
+      .tool-media video::-webkit-media-controls-overlay-play-button { display: none !important; }
+      .tool-media video::-webkit-media-controls-start-playback-button { display: none !important; }
+    }
+    /* A TOUCH DEVICE draws a centred play button of its own, and the shadow
+       part is named differently on iOS and Android, so it cannot be hidden
+       reliably. The custom button is dropped instead: exactly one button,
+       whatever the phone draws, and it is the one wired to the controls. */
+    @media (hover: none) {
+      .tool-media .play-btn { display: none !important; }
+    }
   </style>
 </head>
 <body>
