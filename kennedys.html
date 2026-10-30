@@ -521,6 +521,78 @@
     @media (max-width: 760px) {
       .phone-row { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
     }
+
+    /* SOCIAL POST LIGHTBOX: tiles are small, so every one opens full size */
+    .social-grid > img, .social-carousel { cursor: zoom-in; }
+    .social-grid > img:focus-visible, .social-carousel:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 3px;
+    }
+    .social-lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      background: rgba(17,17,17,0.92); backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity 0.28s ease;
+    }
+    .social-lightbox[hidden] { display: none; }
+    .social-lightbox.open { opacity: 1; }
+    .social-lightbox-inner {
+      position: relative;
+      transform: scale(0.97); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1);
+    }
+    .social-lightbox.open .social-lightbox-inner { transform: none; }
+    .social-lightbox img {
+      display: block; max-height: 90vh; max-width: min(760px, 100%);
+      width: auto; border-radius: 6px; background: #fff;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    /* pinned to the viewport, not the image, so the post gets the full height */
+    .social-lightbox-close {
+      position: fixed; top: 1.25rem; right: 1.25rem;
+      width: 2.25rem; height: 2.25rem; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: 1px solid rgba(255,255,255,0.35); border-radius: 50%;
+      color: #fff; cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    }
+    .social-lightbox-close:hover, .social-lightbox-close:focus-visible {
+      background: rgba(255,255,255,0.14); border-color: #fff;
+    }
+    .social-lightbox-hint {
+      position: fixed; top: 1.75rem; left: 1.5rem;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    .social-lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 2.75rem; height: 2.75rem; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%; color: #fff; font-size: 1.05rem; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .social-lightbox-nav:hover { background: var(--accent); }
+    .social-lightbox-prev { left: -3.75rem; }
+    .social-lightbox-next { right: -3.75rem; }
+    /* a single post has nothing to page through */
+    .social-lightbox.single .social-lightbox-nav,
+    .social-lightbox.single .social-lightbox-counter { display: none; }
+    .social-lightbox-counter {
+      position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.55); white-space: nowrap;
+    }
+    @media (max-width: 760px) {
+      .social-lightbox { padding: 1rem; }
+      .social-lightbox img { max-height: 82vh; }
+      .social-lightbox-close { top: 0.75rem; right: 0.75rem; width: 2rem; height: 2rem; }
+      .social-lightbox-hint { display: none; }
+      .social-lightbox-prev { left: 0.4rem; }
+      .social-lightbox-next { right: 0.4rem; }
+      .social-lightbox-nav { width: 2.25rem; height: 2.25rem; background: rgba(0,0,0,0.65); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .social-lightbox, .social-lightbox-inner { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -1171,6 +1243,103 @@
       }
     });
     window.addEventListener('resize', sizeHeaderStack);  </script>
+
+  <!-- SOCIAL POST LIGHTBOX -->
+  <div class="social-lightbox" id="socialLightbox" role="dialog" aria-modal="true" aria-label="Social post" hidden>
+    <div class="social-lightbox-inner">
+      <div class="social-lightbox-hint">Press Esc to close</div>
+      <button type="button" class="social-lightbox-close" id="socialClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="social-lightbox-nav social-lightbox-prev" id="socialPrev" aria-label="Previous slide">&#8592;</button>
+      <img id="socialLightboxImg" src="" alt="" />
+      <button type="button" class="social-lightbox-nav social-lightbox-next" id="socialNext" aria-label="Next slide">&#8594;</button>
+      <div class="social-lightbox-counter" id="socialCounter"></div>
+    </div>
+  </div>
+
+  <script>
+    /* Every social post opens full size, so the small print is readable.
+       A carousel opens on the slide it is already showing. */
+    (function () {
+      const box     = document.getElementById('socialLightbox');
+      const img     = document.getElementById('socialLightboxImg');
+      const closeEl = document.getElementById('socialClose');
+      const prevEl  = document.getElementById('socialPrev');
+      const nextEl  = document.getElementById('socialNext');
+      const counter = document.getElementById('socialCounter');
+      const grid    = document.querySelector('.social-grid');
+      if (!box || !grid) return;
+
+      let slides = [];
+      let index  = 0;
+
+      function show(i) {
+        index = (i + slides.length) % slides.length;
+        img.src = slides[index].src;
+        img.alt = slides[index].alt;
+        counter.textContent = (index + 1) + ' / ' + slides.length;
+      }
+
+      function open(list, start) {
+        slides = list;
+        box.classList.toggle('single', slides.length < 2);
+        show(start);
+        box.hidden = false;
+        document.body.classList.add('lightbox-open');
+        requestAnimationFrame(() => box.classList.add('open'));
+        closeEl.focus();
+      }
+
+      function close() {
+        box.classList.remove('open');
+        document.body.classList.remove('lightbox-open');
+        const done = () => { box.hidden = true; box.removeEventListener('transitionend', done); };
+        box.addEventListener('transitionend', done);
+        setTimeout(done, 350);
+      }
+
+      grid.querySelectorAll(':scope > img').forEach(tile => {
+        tile.tabIndex = 0;
+        tile.setAttribute('role', 'button');
+        const fire = () => open([{ src: tile.currentSrc || tile.src, alt: tile.alt }], 0);
+        tile.addEventListener('click', fire);
+        tile.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); }
+        });
+      });
+
+      grid.querySelectorAll('.social-carousel').forEach(car => {
+        car.tabIndex = 0;
+        car.setAttribute('role', 'button');
+        const imgs = [...car.querySelectorAll('.carousel-slide img')];
+        const list = imgs.map(i => ({ src: i.dataset.src || i.src, alt: i.alt }));
+        // the tile's own arrows and dots page it in place, they do not open it
+        car.querySelectorAll('.carousel-btn, .carousel-dots').forEach(
+          el => el.addEventListener('click', e => e.stopPropagation()));
+        const fire = () => {
+          const dots = [...car.querySelectorAll('.carousel-dot')];
+          const at = dots.findIndex(d => d.classList.contains('active'));
+          open(list, at < 0 ? 0 : at);
+        };
+        car.addEventListener('click', fire);
+        car.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); }
+        });
+      });
+
+      closeEl.addEventListener('click', close);
+      prevEl.addEventListener('click', () => show(index - 1));
+      nextEl.addEventListener('click', () => show(index + 1));
+      box.addEventListener('click', e => { if (e.target === box) close(); });
+      document.addEventListener('keydown', e => {
+        if (box.hidden) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft'  && slides.length > 1) show(index - 1);
+        if (e.key === 'ArrowRight' && slides.length > 1) show(index + 1);
+      });
+    })();
+  </script>
 
   <!-- Concept Lightbox -->
   <div class="concept-lightbox" id="conceptLightbox">
