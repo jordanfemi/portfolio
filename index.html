@@ -95,6 +95,88 @@
       color: var(--text); margin-bottom: 0.2em;
       opacity: 0; animation: up 0.7s cubic-bezier(0.16,1,0.3,1) 0.12s both;
     }
+    /* ── HERO INTRO VIDEO: clickable dot + cue ─────────── */
+    .hero-dot {
+      font: inherit; color: inherit; background: none; border: 0; padding: 0;
+      margin: 0; line-height: inherit; vertical-align: baseline;
+      position: relative; display: inline-block; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero-dot::after {
+      content: ''; position: absolute; pointer-events: none;
+      left: 50.6%; top: 83.5%;
+      width: 0.3em; height: 0.3em; margin: -0.15em 0 0 -0.15em;
+      border: 2px solid var(--accent); border-radius: 50%;
+      opacity: 0; animation: dotRipple 2.6s cubic-bezier(0.16,1,0.3,1) infinite;
+    }
+    .hero-dot:hover, .hero-dot:focus-visible { transform: scale(1.06); }
+    .hero-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 4px; }
+    @keyframes dotRipple {
+      0%   { transform: scale(0.4);  opacity: 0; }
+      22%  { opacity: 0.5; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .hero-cue {
+      /* % of the dot's own box, so it tracks the heading at every size.
+         em would resolve against this element's small font-size, not the heading. */
+      position: absolute; left: 100%; margin-left: 0.5rem; top: 46%;
+      display: flex; align-items: center; gap: 0.4rem;
+      white-space: nowrap; cursor: pointer;
+      font-family: 'Aeonik', sans-serif;
+      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      opacity: 0; animation: cueIn 0.6s ease-out 1.6s forwards, cueFloat 3.4s ease-in-out 2.2s infinite;
+    }
+    .hero-cue svg { display: block; overflow: visible; }
+    /* text comes from CSS so the <h1> reads "Hello." to crawlers and on copy */
+    .hero-cue::after { content: 'Click me'; }
+    @keyframes cueIn   { from { opacity: 0; transform: translate(6px, -4px); } to { opacity: 1; transform: none; } }
+    @keyframes cueFloat{ 0%,100% { transform: none; } 50% { transform: translate(3px, -3px); } }
+
+    /* ── INTRO VIDEO LIGHTBOX ──────────────────────────── */
+    .video-lightbox {
+      position: fixed; inset: 0; z-index: 400;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      background: rgba(17,17,17,0.9); backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity 0.28s ease;
+    }
+    .video-lightbox[hidden] { display: none; }
+    .video-lightbox.open { opacity: 1; }
+    .video-lightbox-inner {
+      position: relative; width: min(1100px, 100%);
+      transform: scale(0.97); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1);
+    }
+    .video-lightbox.open .video-lightbox-inner { transform: none; }
+    .video-lightbox video {
+      width: 100%; max-height: 82vh; aspect-ratio: 16 / 9;
+      display: block; background: #000; border-radius: 6px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .video-lightbox-close {
+      position: absolute; top: -3rem; right: 0;
+      width: 2.25rem; height: 2.25rem; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: 1px solid rgba(255,255,255,0.35); border-radius: 50%;
+      color: #fff; cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    }
+    .video-lightbox-close:hover, .video-lightbox-close:focus-visible {
+      background: rgba(255,255,255,0.14); border-color: #fff;
+    }
+    .video-lightbox-close:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    .video-lightbox-hint {
+      position: absolute; top: -2.6rem; left: 0;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    body.lightbox-open { overflow: hidden; }
+    @media (max-width: 700px) {
+      .video-lightbox { padding: 1rem; }
+      .video-lightbox-close { top: -2.9rem; width: 2rem; height: 2rem; }
+      .video-lightbox-hint { display: none; }
+    }
+
     .hero-name-line {
       font-family: 'Aeonik', sans-serif; font-size: clamp(1.2rem, 2.6vw, 2rem);
       font-weight: 600; letter-spacing: -0.025em; color: var(--muted);
@@ -534,6 +616,9 @@
       .hero-hello, .hero-name-line, .hero-desc, .hero-actions,
       .hero-stats, .hero-photo { opacity: 1; animation: none; }
       .marquee-track { animation: none; }
+      .hero-dot::after { animation: none; opacity: 0.4; transform: scale(1.5); }
+      .hero-cue { animation: none; opacity: 1; }
+      .video-lightbox, .video-lightbox-inner { transition: none; }
     }
 
     .stagger .fade-up:nth-child(1) { transition-delay: 0s; }
@@ -601,7 +686,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-left">
-      <h1 class="hero-hello">Hello.</h1>
+      <h1 class="hero-hello">Hello<button type="button" class="hero-dot" id="introDot" aria-label="Play the intro video">.<span class="hero-cue" aria-hidden="true"><svg width="28" height="22" viewBox="0 0 34 26" fill="none"><path d="M31 3C31 3 26 16 16 20C11.5 21.8 7 22 4 21.6" stroke="#222222" stroke-width="1.6" stroke-linecap="round"/><path d="M8.5 17.5L3.4 21.7L8 25.4" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></h1>
       <p class="hero-name-line">I am <span>Jordan Femi-Famakinwa</span>, your trusted design specialist.</p>
       <p class="hero-desc">10+ years leading design across B2B, corporate, and technology sectors. Brand strategy, motion, AI-assisted creative, all built to be commercially effective and visually exceptional.</p>
       <div class="hero-actions">
@@ -980,6 +1065,20 @@
     </footer>
   </section>
 
+
+  <!-- INTRO VIDEO LIGHTBOX -->
+  <div class="video-lightbox" id="introLightbox" role="dialog" aria-modal="true" aria-label="Intro video" hidden>
+    <div class="video-lightbox-inner">
+      <div class="video-lightbox-hint">Press Esc to close</div>
+      <button type="button" class="video-lightbox-close" id="introClose" aria-label="Close video">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <video id="introVideo" controls playsinline preload="none" poster="assets/thumbs/intro-video-poster.jpg">
+        <source src="assets/videos/intro-jordan-femi-famakinwa.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
   <script>
     // Hamburger menu
     const hamburger = document.getElementById('navHamburger');
@@ -1041,7 +1140,48 @@
         window.scrollTo({ top: document.getElementById('contact').offsetTop - nav.offsetHeight, behavior: 'smooth' });
       });
     });
+
+    /* Intro video lightbox */
+    (function () {
+      const dot   = document.getElementById('introDot');
+      const box   = document.getElementById('introLightbox');
+      const video = document.getElementById('introVideo');
+      const close = document.getElementById('introClose');
+      if (!dot || !box || !video || !close) return;
+
+      function openVideo() {
+        box.hidden = false;
+        document.body.classList.add('lightbox-open');
+        requestAnimationFrame(() => box.classList.add('open'));
+        video.currentTime = 0;
+        video.muted = false;
+        video.volume = 1;
+        // The click is a user gesture, so sound is allowed. If a browser still
+        // refuses, fall back to muted rather than not playing at all.
+        const p = video.play();
+        if (p && p.catch) p.catch(() => { video.muted = true; video.play().catch(() => {}); });
+        close.focus();
+      }
+
+      function closeVideo() {
+        video.pause();
+        box.classList.remove('open');
+        document.body.classList.remove('lightbox-open');
+        const done = () => { box.hidden = true; box.removeEventListener('transitionend', done); };
+        box.addEventListener('transitionend', done);
+        setTimeout(done, 350);
+        dot.focus();
+      }
+
+      dot.addEventListener('click', openVideo);
+      close.addEventListener('click', closeVideo);
+      box.addEventListener('click', e => { if (e.target === box) closeVideo(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !box.hidden) closeVideo();
+      });
+    })();
   </script>
+
 </body>
 </html>
 
