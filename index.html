@@ -97,6 +97,9 @@
     }
     /* ── HERO INTRO VIDEO: clickable dot + cue ─────────── */
     .hero-dot {
+      /* 0.22 of the heading's own clamp, so the arrow tracks the dot at every width.
+         em cannot be used here: a custom property resolves em where it is used. */
+      --arrow: clamp(0.84rem, 1.96vw, 1.82rem);
       font: inherit; color: inherit; background: none; border: 0; padding: 0;
       margin: 0; line-height: inherit; vertical-align: baseline;
       position: relative; display: inline-block; cursor: pointer;
@@ -107,9 +110,9 @@
       left: 50.6%; top: 83.5%;
       width: 0.3em; height: 0.3em; margin: -0.15em 0 0 -0.15em;
       border: 2px solid var(--accent); border-radius: 50%;
-      opacity: 0; animation: dotRipple 2.6s cubic-bezier(0.16,1,0.3,1) infinite;
+      opacity: 0; animation: dotRipple 2.6s cubic-bezier(0.16,1,0.3,1) 1.6s infinite;
     }
-    .hero-dot:hover, .hero-dot:focus-visible { transform: scale(1.06); }
+    .hero-dot:hover .hero-cue, .hero-dot:focus-visible .hero-cue { background: var(--acc-h); }
     .hero-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 4px; }
     @keyframes dotRipple {
       0%   { transform: scale(0.4);  opacity: 0; }
@@ -118,21 +121,36 @@
     }
 
     .hero-cue {
-      /* % of the dot's own box, so it tracks the heading at every size.
-         em would resolve against this element's small font-size, not the heading. */
-      position: absolute; left: 100%; margin-left: 0.5rem; top: 46%;
-      display: flex; align-items: center; gap: 0.4rem;
+      /* positioned so the TEXT lands up-right of the dot; the arrow hangs off
+         its bottom-left corner. Percentages of the dot's own box, so it holds
+         at every heading size. */
+      position: absolute; left: 150.3%; bottom: 36%;
       white-space: nowrap; cursor: pointer;
       font-family: 'Aeonik', sans-serif;
       font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent);
-      opacity: 0; animation: cueIn 0.6s ease-out 1.6s forwards, cueFloat 3.4s ease-in-out 2.2s infinite;
+      text-transform: uppercase;
+      /* styled as a button, matching .btn-primary. Padding scales off --arrow
+         so the pill keeps its proportions as the heading resizes. */
+      background: var(--accent); color: #fff; border-radius: 4px;
+      padding: calc(var(--arrow) * 0.26) calc(var(--arrow) * 0.46);
+      transition: background 0.2s;
+      opacity: 0;
+      animation: cueIn 0.6s ease-out 1.6s forwards,
+                 cueFloat 3.6s ease-in-out 2.2s infinite;
     }
-    .hero-cue svg { display: block; overflow: visible; }
     /* text comes from CSS so the <h1> reads "Hello." to crawlers and on copy */
     .hero-cue::after { content: 'Click me'; }
-    @keyframes cueIn   { from { opacity: 0; transform: translate(6px, -4px); } to { opacity: 1; transform: none; } }
-    @keyframes cueFloat{ 0%,100% { transform: none; } 50% { transform: translate(3px, -3px); } }
+    .hero-cue svg {
+      display: block; overflow: visible;
+      width: var(--arrow); height: var(--arrow);
+      /* top-right of the arrow meets the bottom-left of the text, offset a
+         little so they breathe rather than touch */
+      position: absolute; right: 100%; top: 100%;
+      margin-right: calc(var(--arrow) * 0.14);
+      margin-top: calc(var(--arrow) * 0.14);
+    }
+    @keyframes cueIn    { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes cueFloat { 0%,100% { transform: none; } 50% { transform: translate(2.5px, -2.5px); } }
 
     /* ── INTRO VIDEO LIGHTBOX ──────────────────────────── */
     .video-lightbox {
@@ -629,6 +647,13 @@
     .stagger .fade-up:nth-child(6) { transition-delay: 0.35s; }
 
     /* ── RESPONSIVE ────────────────────────────────────── */
+    /* the band where the photo sits closest to the heading */
+    @media (max-width: 1300px) {
+      .hero-cue {
+        font-size: 0.58rem; letter-spacing: 0.08em;
+        padding: calc(var(--arrow) * 0.26) calc(var(--arrow) * 0.4);
+      }
+    }
     @media (max-width: 1100px) {
       #hero { grid-template-columns: 1fr; }
       .hero-right { display: none; }
@@ -654,6 +679,7 @@
     }
     @media (max-width: 600px) {
       .hero-hello { font-size: 4.5rem; }
+      .hero-dot { --arrow: 0.63rem; }
       .process-grid { grid-template-columns: 1fr; }
       .contact-headline { font-size: 2.5rem; }
     }
@@ -686,7 +712,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-left">
-      <h1 class="hero-hello">Hello<button type="button" class="hero-dot" id="introDot" aria-label="Play the intro video">.<span class="hero-cue" aria-hidden="true"><svg width="28" height="22" viewBox="0 0 34 26" fill="none"><path d="M31 3C31 3 26 16 16 20C11.5 21.8 7 22 4 21.6" stroke="#222222" stroke-width="1.6" stroke-linecap="round"/><path d="M8.5 17.5L3.4 21.7L8 25.4" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></h1>
+      <h1 class="hero-hello">Hello<button type="button" class="hero-dot" id="introDot" aria-label="Play the intro video">.<span class="hero-cue" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><path d="M41 3 L6 38" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/><path d="M16.5 34.8 L6 38 L9.2 27.5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></h1>
       <p class="hero-name-line">I am <span>Jordan Femi-Famakinwa</span>, your trusted design specialist.</p>
       <p class="hero-desc">10+ years leading design across B2B, corporate, and technology sectors. Brand strategy, motion, AI-assisted creative, all built to be commercially effective and visually exceptional.</p>
       <div class="hero-actions">
@@ -1172,6 +1198,9 @@
         setTimeout(done, 350);
         dot.focus();
       }
+
+      // let the last frame land, then hand the page back
+      video.addEventListener('ended', () => setTimeout(closeVideo, 400));
 
       dot.addEventListener('click', openVideo);
       close.addEventListener('click', closeVideo);
