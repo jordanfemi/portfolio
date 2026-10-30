@@ -16,7 +16,7 @@
   <meta property="og:image:type" content="image/jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://jordanfemidesign.com/assets/og-thumbnail.jpg?v=3" />
-  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="fonts.css?v=2" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-19CZ6Z5MK8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -437,10 +437,13 @@
     }
 
     /* phones for the mobile-first social films */
+    /* five films, so the column counts divide cleanly and leave no orphan */
     .phone-row {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+      display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem 1.25rem; margin-top: 2.5rem; align-items: start;
     }
+    @media (max-width: 980px) { .phone-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 620px) { .phone-row { grid-template-columns: repeat(2, 1fr); } }
     .phone-cell { display: flex; flex-direction: column; gap: 0.7rem; }
     .video-item.phone {
       aspect-ratio: 9 / 19.5; padding: 0.4rem;
@@ -489,6 +492,9 @@
     }
     .social-carousel:hover .carousel-btn,
     .social-carousel:focus-within .carousel-btn { opacity: 1; }
+    /* a touch screen has no hover, so an invisible arrow would just swallow
+       the tap that should open the post. Tapping opens it instead. */
+    @media (hover: none) { .social-carousel .carousel-btn { display: none; } }
     .social-carousel .carousel-prev { left: 0.4rem; }
     .social-carousel .carousel-next { right: 0.4rem; }
     /* slide count, so a carousel tile reads as one before it is touched */
@@ -505,8 +511,7 @@
     }
     .social-carousel .carousel-dot { background: rgba(255,255,255,0.45); }
     .social-carousel .carousel-dot.active { background: #fff; }
-    @media (max-width: 900px) { .social-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 620px) { .social-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 680px) { .social-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; } }
 
     /* infographics: wide, detailed, so give them room */
     .infographic { margin-top: 2.5rem; }
@@ -519,7 +524,6 @@
       font-size: 0.72rem; color: var(--muted); margin-top: 0.7rem; line-height: 1.6;
     }
     @media (max-width: 760px) {
-      .phone-row { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
     }
 
     /* SOCIAL POST LIGHTBOX: tiles are small, so every one opens full size */
@@ -588,11 +592,22 @@
       .social-lightbox-hint { display: none; }
       .social-lightbox-prev { left: 0.4rem; }
       .social-lightbox-next { right: 0.4rem; }
-      .social-lightbox-nav { width: 2.25rem; height: 2.25rem; background: rgba(0,0,0,0.65); }
+      .social-lightbox-nav { width: 2.75rem; height: 2.75rem; background: rgba(0,0,0,0.65); }
     }
     @media (prefers-reduced-motion: reduce) {
       .social-lightbox, .social-lightbox-inner { transition: none; }
     }
+
+    /* was a 15 MB GIF; a silent looping video does the same job at 0.5 MB */
+    .content-loop {
+      width: 100%; display: block; border-radius: 0 0 0.75rem 0.75rem;
+      border: 1px solid var(--border); border-top: none;
+      pointer-events: none; background: var(--bg3);
+    }
+    .content-loop::-webkit-media-controls { display: none !important; }
+    .content-loop::-webkit-media-controls-enclosure { display: none !important; }
+    .content-loop::-webkit-media-controls-start-playback-button { display: none !important; }
+    .content-loop::-webkit-media-controls-overlay-play-button { display: none !important; }
   </style>
 </head>
 <body>
@@ -663,7 +678,11 @@
   <!-- MAIN IMAGE -->
   <section class="case-section fade-up" style="padding-top:0">
     <img src="assets/kennedys-content-1.jpg?v=2" alt="Kennedys Law Digital Design Overview" style="width:100%;display:block;border-radius:0.75rem 0.75rem 0 0;border:1px solid var(--border);" />
-    <img src="assets/kennedys-content-2.gif" alt="Kennedys motion work" style="width:100%;display:block;border-radius:0 0 0.75rem 0.75rem;border:1px solid var(--border);border-top:none;" />
+    <video class="content-loop" autoplay loop muted playsinline preload="metadata"
+           disablepictureinpicture aria-label="Kennedys motion work"
+           poster="assets/thumbs/kennedys-motion-loop-poster.jpg">
+      <source src="assets/videos/kennedys-motion-loop.mp4" type="video/mp4" />
+    </video>
   </section>
 
   <!-- FORESIGHT CAMPAIGN -->
@@ -672,7 +691,7 @@
     <h2 class="section-title">Kennedys Foresight <br>2026.</h2>
     <p class="body-text">A fully integrated campaign built around Kennedys' annual risk report, delivered across social media, email, presentations, and video. Produced across three regions, UK, US and APAC, with adapted assets tailored to each market.</p>
 
-    <img src="assets/foresight-hero.jpg" alt="Foresight 2026 Campaign Hero" class="campaign-hero" loading="lazy" />
+    <img src="assets/foresight-hero.jpg?v=3" alt="Foresight 2026 Campaign Hero" class="campaign-hero" loading="lazy" />
 
     <div class="campaign-video-row" style="margin-top:2.5rem">
       <div>
@@ -694,7 +713,7 @@
       <div>
         <div class="video-item" style="margin-top:0">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/foresight-26-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/foresight-26-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kennedys-foresight-26.mp4" type="video/mp4" />
           </video>
         </div>
@@ -708,7 +727,7 @@
 
     <div class="campaign-channel">
       <div class="campaign-channel-label">Email: Vuture Banners & Snippets</div>
-      <img src="assets/foresight-email-banner.jpg" alt="Foresight Email Banner" class="campaign-banner" loading="lazy" />
+      <img src="assets/foresight-email-banner.jpg?v=3" alt="Foresight Email Banner" class="campaign-banner" loading="lazy" />
       <div class="campaign-email-row">
         <img src="assets/foresight-email-snippet.jpg" alt="Foresight Email Snippet Image" loading="lazy" />
         <img src="assets/foresight-email-snippet-solid.jpg" alt="Foresight Email Snippet Solid" loading="lazy" />
@@ -786,9 +805,9 @@
       <div class="carousel-viewer social-carousel" id="pecCarousel">
         <div class="carousel-track">
           <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-1.jpg" alt="Team introduction carousel, slide 1" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-2.jpg" alt="Team introduction carousel, slide 2" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-3.jpg" alt="Team introduction carousel, slide 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-4.jpg" alt="Team introduction carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-pec-2.jpg" alt="Team introduction carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-pec-3.jpg" alt="Team introduction carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-pec-4.jpg" alt="Team introduction carousel, slide 4" loading="lazy" /></div>
         </div>
         <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;pecCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
         <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;pecCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
@@ -800,14 +819,14 @@
       <div class="carousel-viewer social-carousel" id="earlyCareersCarousel">
         <div class="carousel-track">
           <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-1.jpg" alt="Early careers carousel, slide 1" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-2.jpg" alt="Early careers carousel, slide 2" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-3.jpg" alt="Early careers carousel, slide 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-4.jpg" alt="Early careers carousel, slide 4" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-5.jpg" alt="Early careers carousel, slide 5" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-6.jpg" alt="Early careers carousel, slide 6" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-7.jpg" alt="Early careers carousel, slide 7" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-8.jpg" alt="Early careers carousel, slide 8" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-earlycareers-9.jpg" alt="Early careers carousel, slide 9" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-2.jpg" alt="Early careers carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-3.jpg" alt="Early careers carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-4.jpg" alt="Early careers carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-5.jpg" alt="Early careers carousel, slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-6.jpg" alt="Early careers carousel, slide 6" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-7.jpg" alt="Early careers carousel, slide 7" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-8.jpg" alt="Early careers carousel, slide 8" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-earlycareers-9.jpg" alt="Early careers carousel, slide 9" loading="lazy" /></div>
         </div>
         <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;earlyCareersCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
         <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;earlyCareersCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
@@ -823,13 +842,13 @@
       <div class="carousel-viewer social-carousel" id="volunteersCarousel">
         <div class="carousel-track">
           <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-1.jpg" alt="Volunteers Week carousel, slide 1" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-2.jpg" alt="Volunteers Week carousel, slide 2" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-3.jpg" alt="Volunteers Week carousel, slide 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-4.jpg" alt="Volunteers Week carousel, slide 4" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-5.jpg" alt="Volunteers Week carousel, slide 5" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-6.jpg" alt="Volunteers Week carousel, slide 6" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-7.jpg" alt="Volunteers Week carousel, slide 7" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-volunteers-8.jpg" alt="Volunteers Week carousel, slide 8" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-2.jpg" alt="Volunteers Week carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-3.jpg" alt="Volunteers Week carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-4.jpg" alt="Volunteers Week carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-5.jpg" alt="Volunteers Week carousel, slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-6.jpg" alt="Volunteers Week carousel, slide 6" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-7.jpg" alt="Volunteers Week carousel, slide 7" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-volunteers-8.jpg" alt="Volunteers Week carousel, slide 8" loading="lazy" /></div>
         </div>
         <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;volunteersCarousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
         <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;volunteersCarousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
@@ -840,10 +859,10 @@
       <div class="carousel-viewer social-carousel" id="fy26Carousel">
         <div class="carousel-track">
           <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-1.jpg" alt="FY26 highlights carousel, slide 1" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-2.jpg" alt="FY26 highlights carousel, slide 2" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-3.jpg" alt="FY26 highlights carousel, slide 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-4.jpg" alt="FY26 highlights carousel, slide 4" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-5.jpg" alt="FY26 highlights carousel, slide 5" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-fy26-2.jpg" alt="FY26 highlights carousel, slide 2" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-fy26-3.jpg" alt="FY26 highlights carousel, slide 3" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-fy26-4.jpg" alt="FY26 highlights carousel, slide 4" loading="lazy" /></div>
+          <div class="carousel-slide"><img data-src="assets/kennedys/carousel-fy26-5.jpg" alt="FY26 highlights carousel, slide 5" loading="lazy" /></div>
         </div>
         <button class="carousel-btn carousel-prev" onclick="carouselMove(&#39;fy26Carousel&#39;, -1)" aria-label="Previous slide">&#8592;</button>
         <button class="carousel-btn carousel-next" onclick="carouselMove(&#39;fy26Carousel&#39;, 1)" aria-label="Next slide">&#8594;</button>
@@ -897,7 +916,7 @@
     <h2 class="section-title">Global Strategic <br>Plan.</h2>
     <p class="body-text">A firm-wide internal campaign built to launch Kennedys' Global Strategic Plan, the organisation's multi-year growth framework. The brief required something that felt genuinely ambitious: a visual identity strong enough to carry across video, digital, print, and live events, while landing with both partners and staff. Every asset, from the opening concept to the final suite of seven films, was conceived, designed, and produced in-house.</p>
 
-    <img src="assets/kspl-final-cover.jpg" alt="Global Strategic Plan Front Cover" class="kspl-hero" loading="lazy" />
+    <img src="assets/kspl-final-cover.jpg?v=3" alt="Global Strategic Plan Front Cover" class="kspl-hero" loading="lazy" />
 
     <!-- DESIGN EXPLORATION -->
     <div class="campaign-channel">
@@ -906,16 +925,16 @@
       <div class="explore-wrap">
         <button class="explore-arrow left" onclick="scrollStrip('themeStrip',-1)">&#8592;</button>
         <div class="explore-strip" id="themeStrip">
-          <img src="assets/kspl-theme-1.jpg" alt="Theme Concept 1" loading="lazy" />
-          <img src="assets/kspl-theme-2.jpg" alt="Theme Concept 2" loading="lazy" />
-          <img class="h-lazy" data-src="assets/kspl-theme-3.jpg" alt="Theme Concept 3" />
-          <img class="h-lazy" data-src="assets/kspl-theme-4.jpg" alt="Theme Concept 4" />
-          <img class="h-lazy" data-src="assets/kspl-theme-5.jpg" alt="Theme Concept 5" />
-          <img class="h-lazy" data-src="assets/kspl-theme-6.jpg" alt="Theme Concept 6" />
-          <img class="h-lazy" data-src="assets/kspl-theme-7.jpg" alt="Theme Concept 7" />
-          <img class="h-lazy" data-src="assets/kspl-theme-8.jpg" alt="Theme Concept 8" />
-          <img class="h-lazy" data-src="assets/kspl-theme-9.jpg" alt="Theme Concept 9" />
-          <img class="h-lazy" data-src="assets/kspl-theme-10.jpg" alt="Theme Concept 10" />
+          <img src="assets/kspl-theme-1.jpg?v=3" alt="Theme Concept 1" loading="lazy" />
+          <img src="assets/kspl-theme-2.jpg?v=3" alt="Theme Concept 2" loading="lazy" />
+          <img class="h-lazy" data-src="assets/kspl-theme-3.jpg?v=3" alt="Theme Concept 3" />
+          <img class="h-lazy" data-src="assets/kspl-theme-4.jpg?v=3" alt="Theme Concept 4" />
+          <img class="h-lazy" data-src="assets/kspl-theme-5.jpg?v=3" alt="Theme Concept 5" />
+          <img class="h-lazy" data-src="assets/kspl-theme-6.jpg?v=3" alt="Theme Concept 6" />
+          <img class="h-lazy" data-src="assets/kspl-theme-7.jpg?v=3" alt="Theme Concept 7" />
+          <img class="h-lazy" data-src="assets/kspl-theme-8.jpg?v=3" alt="Theme Concept 8" />
+          <img class="h-lazy" data-src="assets/kspl-theme-9.jpg?v=3" alt="Theme Concept 9" />
+          <img class="h-lazy" data-src="assets/kspl-theme-10.jpg?v=3" alt="Theme Concept 10" />
         </div>
         <button class="explore-arrow right" onclick="scrollStrip('themeStrip',1)">&#8594;</button>
       </div>
@@ -926,18 +945,18 @@
       <div class="explore-wrap">
         <button class="explore-arrow left" onclick="scrollStrip('bannerStrip',-1)">&#8592;</button>
         <div class="explore-strip banners" id="bannerStrip">
-          <img src="assets/kspl-banner-1.jpg" alt="Banner Concept 1" loading="lazy" />
-          <img src="assets/kspl-banner-2.jpg" alt="Banner Concept 2" loading="lazy" />
-          <img class="h-lazy" data-src="assets/kspl-banner-3.jpg" alt="Banner Concept 3" />
-          <img class="h-lazy" data-src="assets/kspl-banner-4.jpg" alt="Banner Concept 4" />
-          <img class="h-lazy" data-src="assets/kspl-banner-5.jpg" alt="Banner Concept 5" />
-          <img class="h-lazy" data-src="assets/kspl-banner-6.jpg" alt="Banner Concept 6" />
-          <img class="h-lazy" data-src="assets/kspl-banner-7.jpg" alt="Banner Concept 7" />
-          <img class="h-lazy" data-src="assets/kspl-banner-8.jpg" alt="Banner Concept 8" />
-          <img class="h-lazy" data-src="assets/kspl-banner-9.jpg" alt="Banner Concept 9" />
-          <img class="h-lazy" data-src="assets/kspl-banner-10.jpg" alt="Banner Concept 10" />
-          <img class="h-lazy" data-src="assets/kspl-banner-11.jpg" alt="Banner Concept 11" />
-          <img class="h-lazy" data-src="assets/kspl-banner-12.jpg" alt="Banner Concept 12" />
+          <img src="assets/kspl-banner-1.jpg?v=3" alt="Banner Concept 1" loading="lazy" />
+          <img src="assets/kspl-banner-2.jpg?v=3" alt="Banner Concept 2" loading="lazy" />
+          <img class="h-lazy" data-src="assets/kspl-banner-3.jpg?v=3" alt="Banner Concept 3" />
+          <img class="h-lazy" data-src="assets/kspl-banner-4.jpg?v=3" alt="Banner Concept 4" />
+          <img class="h-lazy" data-src="assets/kspl-banner-5.jpg?v=3" alt="Banner Concept 5" />
+          <img class="h-lazy" data-src="assets/kspl-banner-6.jpg?v=3" alt="Banner Concept 6" />
+          <img class="h-lazy" data-src="assets/kspl-banner-7.jpg?v=3" alt="Banner Concept 7" />
+          <img class="h-lazy" data-src="assets/kspl-banner-8.jpg?v=3" alt="Banner Concept 8" />
+          <img class="h-lazy" data-src="assets/kspl-banner-9.jpg?v=3" alt="Banner Concept 9" />
+          <img class="h-lazy" data-src="assets/kspl-banner-10.jpg?v=3" alt="Banner Concept 10" />
+          <img class="h-lazy" data-src="assets/kspl-banner-11.jpg?v=3" alt="Banner Concept 11" />
+          <img class="h-lazy" data-src="assets/kspl-banner-12.jpg?v=3" alt="Banner Concept 12" />
         </div>
         <button class="explore-arrow right" onclick="scrollStrip('bannerStrip',1)">&#8594;</button>
       </div>
@@ -950,49 +969,49 @@
       <div class="kspl-video-grid">
         <div class="video-item featured">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-intro-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-intro-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-intro.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Introduction Film</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-people-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-people-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-people.mp4" type="video/mp4" />
           </video>
           <div class="video-label">People</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-clients-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-clients-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-clients.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Clients</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-innovation-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-innovation-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-innovation.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Innovation</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-finance-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-finance-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-finance.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Finance</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-growth-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-growth-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-growth.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Growth</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-townhall-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls preload="none" poster="assets/thumbs/kspl-video-townhall-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-townhall.mp4" type="video/mp4" />
           </video>
           <div class="video-label">Town Hall</div>
@@ -1029,7 +1048,7 @@
       </div>
       <div class="video-item">
       <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/kennedys-townhall-thumb.jpg">
+        <video controls preload="none" poster="assets/thumbs/kennedys-townhall-thumb.jpg?v=3">
           <source src="assets/videos/kennedys-townhall.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Global Strategic Plan, Town Hall</div>
@@ -1314,10 +1333,22 @@
         car.setAttribute('role', 'button');
         const imgs = [...car.querySelectorAll('.carousel-slide img')];
         const list = imgs.map(i => ({ src: i.dataset.src || i.src, alt: i.alt }));
+        /* Only slide one ships with the page. The rest arrive on first
+           contact, which always happens before a reader can page or open
+           the carousel, so they never see an empty frame. */
+        let hydrated = false;
+        const hydrate = () => {
+          if (hydrated) return;
+          hydrated = true;
+          imgs.forEach(i => { if (i.dataset.src) i.src = i.dataset.src; });
+        };
+        ['pointerenter', 'touchstart', 'focusin', 'pointerdown'].forEach(
+          ev => car.addEventListener(ev, hydrate, { passive: true }));
         // the tile's own arrows and dots page it in place, they do not open it
         car.querySelectorAll('.carousel-btn, .carousel-dots').forEach(
           el => el.addEventListener('click', e => e.stopPropagation()));
         const fire = () => {
+          hydrate();
           const dots = [...car.querySelectorAll('.carousel-dot')];
           const at = dots.findIndex(d => d.classList.contains('active'));
           open(list, at < 0 ? 0 : at);
