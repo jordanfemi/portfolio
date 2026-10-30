@@ -325,6 +325,16 @@
       .hero-cue { animation: none; opacity: 1; }
       .video-lightbox, .video-lightbox-inner { transition: none; }
     }
+
+    /* TOUCH: an invisible button must not keep eating taps. On a phone a
+       tap on the video is how the native controls are summoned, so the
+       faded play button has to stop intercepting once playback starts. */
+    .tool-card.playing .play-btn { pointer-events: none; }
+    /* The browser draws its own centred play button over a poster frame.
+       Stacked on ours it read as two players, so hide the native one and
+       keep the control bar. */
+    .tool-media video::-webkit-media-controls-overlay-play-button { display: none !important; }
+    .tool-media video::-webkit-media-controls-start-playback-button { display: none !important; }
   </style>
 </head>
 <body>
@@ -427,7 +437,7 @@
         </div>
         <div class="tool-media" style="position:relative;aspect-ratio:unset;height:auto;">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/social-media-tool-thumb.jpg" style="width:100%;display:block;height:auto;">
+          <video controls playsinline preload="none" poster="assets/thumbs/social-media-tool-thumb.jpg" style="width:100%;display:block;height:auto;">
             <source src="assets/videos/social-media-tool-web.mp4" type="video/mp4" />
           </video>
         </div>
@@ -450,7 +460,7 @@
         </div>
         <div class="tool-media" style="position:relative;aspect-ratio:unset;height:auto;">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/stock-tool-thumb.jpg" style="width:100%;display:block;height:auto;">
+          <video controls playsinline preload="none" poster="assets/thumbs/stock-tool-thumb.jpg" style="width:100%;display:block;height:auto;">
             <source src="assets/videos/stock-tool-web.mp4" type="video/mp4" />
           </video>
         </div>

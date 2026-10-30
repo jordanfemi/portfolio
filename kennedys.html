@@ -608,6 +608,16 @@
     .content-loop::-webkit-media-controls-enclosure { display: none !important; }
     .content-loop::-webkit-media-controls-start-playback-button { display: none !important; }
     .content-loop::-webkit-media-controls-overlay-play-button { display: none !important; }
+
+    /* TOUCH: an invisible button must not keep eating taps. On a phone a
+       tap on the video is how the native controls are summoned, so the
+       faded play button has to stop intercepting once playback starts. */
+    .video-item.playing .play-btn { pointer-events: none; }
+    /* The browser draws its own centred play button over a poster frame.
+       Stacked on ours it read as two players, so hide the native one and
+       keep the control bar. */
+    .video-item video::-webkit-media-controls-overlay-play-button { display: none !important; }
+    .video-item video::-webkit-media-controls-start-playback-button { display: none !important; }
   </style>
 </head>
 <body>
@@ -697,7 +707,7 @@
       <div>
         <div class="video-item" style="margin-top:0">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/foresight-linkedin-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/foresight-linkedin-thumb.jpg" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kennedys-foresight-linkedin.mp4" type="video/mp4" />
           </video>
         </div>
@@ -713,7 +723,7 @@
       <div>
         <div class="video-item" style="margin-top:0">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/foresight-26-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/foresight-26-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kennedys-foresight-26.mp4" type="video/mp4" />
           </video>
         </div>
@@ -969,49 +979,49 @@
       <div class="kspl-video-grid">
         <div class="video-item featured">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-intro-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-intro-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-intro.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Introduction Film</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-people-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-people-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-people.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">People</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-clients-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-clients-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-clients.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Clients</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-innovation-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-innovation-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-innovation.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Innovation</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-finance-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-finance-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-finance.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Finance</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-growth-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-growth-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-growth.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Growth</div>
         </div>
         <div class="video-item">
           <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-          <video controls preload="none" poster="assets/thumbs/kspl-video-townhall-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+          <video controls playsinline preload="none" poster="assets/thumbs/kspl-video-townhall-thumb.jpg?v=3" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
             <source src="assets/videos/kspl-video-townhall.mp4?v=2" type="video/mp4" />
           </video>
           <div class="video-label">Town Hall</div>
@@ -1041,21 +1051,21 @@
     <div class="video-grid" style="margin-top:2.5rem">
       <div class="video-item featured">
       <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-2-thumb.jpg">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-2-thumb.jpg">
           <source src="assets/videos/carbon-clean-2.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Brand film, full production</div>
       </div>
       <div class="video-item">
       <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/kennedys-townhall-thumb.jpg?v=3">
+        <video controls playsinline preload="none" poster="assets/thumbs/kennedys-townhall-thumb.jpg?v=3">
           <source src="assets/videos/kennedys-townhall.mp4?v=2" type="video/mp4" />
         </video>
         <div class="video-label">Global Strategic Plan, Town Hall</div>
       </div>
       <div class="video-item">
       <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-4-thumb.jpg">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-4-thumb.jpg">
           <source src="assets/videos/carbon-clean-4.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Brand motion, campaign</div>

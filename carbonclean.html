@@ -283,6 +283,16 @@
       .hero-cue { animation: none; opacity: 1; }
       .video-lightbox, .video-lightbox-inner { transition: none; }
     }
+
+    /* TOUCH: an invisible button must not keep eating taps. On a phone a
+       tap on the video is how the native controls are summoned, so the
+       faded play button has to stop intercepting once playback starts. */
+    .video-item.playing .play-btn { pointer-events: none; }
+    /* The browser draws its own centred play button over a poster frame.
+       Stacked on ours it read as two players, so hide the native one and
+       keep the control bar. */
+    .video-item video::-webkit-media-controls-overlay-play-button { display: none !important; }
+    .video-item video::-webkit-media-controls-start-playback-button { display: none !important; }
   </style>
 </head>
 <body>
@@ -370,28 +380,28 @@
     <div class="video-grid" style="margin-top:2.5rem">
       <div class="video-item" style="position:relative;">
         <div class="play-btn" onclick="this.closest('.video-item').querySelector('video').play()"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-new-1-thumb.jpg" style="width:100%;display:block;height:auto;">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-new-1-thumb.jpg" style="width:100%;display:block;height:auto;">
           <source src="assets/videos/carbon-clean-new-1.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Brand film, post-rebrand</div>
       </div>
       <div class="video-item" style="position:relative;">
         <div class="play-btn" onclick="this.closest('.video-item').querySelector('video').play()"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-new-2-thumb.jpg" style="width:100%;display:block;height:auto;">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-new-2-thumb.jpg" style="width:100%;display:block;height:auto;">
           <source src="assets/videos/carbon-clean-new-2.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Product campaign</div>
       </div>
       <div class="video-item" style="position:relative;">
         <div class="play-btn" onclick="this.closest('.video-item').querySelector('video').play()"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-new-3-thumb.jpg" style="width:100%;display:block;height:auto;">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-new-3-thumb.jpg" style="width:100%;display:block;height:auto;">
           <source src="assets/videos/carbon-clean-new-3.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Motion content, brand</div>
       </div>
       <div class="video-item" style="position:relative;">
         <div class="play-btn" onclick="this.closest('.video-item').querySelector('video').play()"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <video controls preload="none" poster="assets/thumbs/carbon-clean-new-4-thumb.jpg" style="width:100%;display:block;height:auto;">
+        <video controls playsinline preload="none" poster="assets/thumbs/carbon-clean-new-4-thumb.jpg" style="width:100%;display:block;height:auto;">
           <source src="assets/videos/carbon-clean-new-4.mp4" type="video/mp4" />
         </video>
         <div class="video-label">Brand motion, post-rebrand</div>
