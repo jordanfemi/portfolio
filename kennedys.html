@@ -176,7 +176,6 @@
     .carousel-track { display: flex; transition: transform 0.4s ease; }
     .carousel-slide { min-width: 100%; }
     .carousel-slide img { width: 100%; display: block; aspect-ratio: 1; object-fit: cover; }
-    #ksplDeckCarousel .carousel-slide img { aspect-ratio: 16/9; object-fit: contain; background: #000; }
     .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
     .carousel-btn:hover { background: var(--accent); color: #fff; }
     .carousel-prev { left: 0.75rem; }
@@ -885,28 +884,6 @@
           <img class="h-lazy" data-src="assets/kspl-banner-12.jpg" alt="Banner Concept 12" />
         </div>
         <button class="explore-arrow right" onclick="scrollStrip('bannerStrip',1)">&#8594;</button>
-      </div>
-    </div>
-
-    <!-- STAKEHOLDER PRESENTATION -->
-    <div class="campaign-channel">
-      <div class="campaign-channel-label">Stakeholder Presentation: Design Direction</div>
-      <p class="body-text" style="margin-bottom:0">A visual concept deck presented to senior internal stakeholders to align on the chosen creative direction before production began. Nine slides. One route selected.</p>
-      <div class="carousel-viewer" id="ksplDeckCarousel" style="margin-top:1rem">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="assets/kspl-slide-1.jpg" alt="Slide 1" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-2.jpg" alt="Slide 2" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-3.jpg" alt="Slide 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-4.jpg" alt="Slide 4" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-5.jpg" alt="Slide 5" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-6.jpg" alt="Slide 6" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-7.jpg" alt="Slide 7" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-8.jpg" alt="Slide 8" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="assets/kspl-slide-9.jpg" alt="Slide 9" loading="lazy" /></div>
-        </div>
-        <button class="carousel-btn carousel-prev" onclick="carouselMove('ksplDeckCarousel', -1)">&#8592;</button>
-        <button class="carousel-btn carousel-next" onclick="carouselMove('ksplDeckCarousel', 1)">&#8594;</button>
-        <div class="carousel-dots"></div>
       </div>
     </div>
 
