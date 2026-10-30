@@ -436,6 +436,64 @@
       .hero-cue { animation: none; opacity: 1; }
       .video-lightbox, .video-lightbox-inner { transition: none; }
     }
+
+    /* phones for the mobile-first social films */
+    .phone-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+      gap: 1.5rem 1.25rem; margin-top: 2.5rem; align-items: start;
+    }
+    .phone-cell { display: flex; flex-direction: column; gap: 0.7rem; }
+    .video-item.phone {
+      aspect-ratio: 9 / 19.5; padding: 0.4rem;
+      background: #141414; border: 0; border-radius: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+    .video-item.phone:hover { border-color: transparent; }
+    .video-item.phone::before { border-radius: 1.5rem; }
+    .video-item.phone video {
+      width: 100%; height: 100%; aspect-ratio: auto;
+      object-fit: contain; background: #000; border-radius: 1.15rem;
+    }
+    /* speaker slot, so it reads as a handset rather than a rounded box */
+    .video-item.phone::after {
+      content: ''; position: absolute; top: 0.72rem; left: 50%;
+      transform: translateX(-50%); width: 20%; height: 3px;
+      border-radius: 3px; background: rgba(255,255,255,0.3); z-index: 3;
+    }
+    .video-item.phone .play-btn {
+      width: 46px; height: 46px; transform: translate(-50%, -50%);
+    }
+    .video-item.phone .play-btn:hover { transform: translate(-50%, -50%) scale(1.08); }
+    .video-item.phone .play-btn svg { width: 17px; height: 17px; }
+    .phone-caption { font-size: 0.72rem; line-height: 1.5; color: var(--muted); text-align: center; }
+
+    /* static social posts, shown at their real 4:5 */
+    .social-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .social-grid img {
+      width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover;
+      border-radius: 0.75rem; border: 1px solid var(--border);
+    }
+    .carousel-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .carousel-pair .carousel-slide img { aspect-ratio: 4 / 5; object-fit: contain; background: var(--bg3); }
+    #fy26Carousel .carousel-slide img { aspect-ratio: 3 / 4; }
+
+    /* infographics: wide, detailed, so give them room */
+    .infographic { margin-top: 2.5rem; }
+    .infographic + .infographic { margin-top: 2rem; }
+    .infographic img {
+      width: 100%; display: block; border-radius: 0.75rem;
+      border: 1px solid var(--border); background: #fff;
+    }
+    .infographic figcaption {
+      font-size: 0.72rem; color: var(--muted); margin-top: 0.7rem; line-height: 1.6;
+    }
+    @media (max-width: 760px) {
+      .carousel-pair { grid-template-columns: 1fr; }
+      .phone-row { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -550,72 +608,6 @@
     </div>
 
     <div class="campaign-channel">
-      <div class="campaign-channel-label">Social Media: Single Graphics</div>
-      <div class="campaign-grid-3">
-        <img src="assets/foresight-social-1.jpg" alt="Foresight Social Graphic 1" loading="lazy" />
-        <img src="assets/foresight-social-2.jpg" alt="Foresight Social Graphic 2" loading="lazy" />
-        <img src="assets/foresight-social-3.jpg" alt="Foresight Social Graphic 3" loading="lazy" />
-      </div>
-    </div>
-
-    <div class="campaign-channel">
-      <div class="campaign-channel-label">LinkedIn Carousels: UK, US & APAC</div>
-      <div class="carousel-row">
-
-        <div class="carousel-col">
-          <div class="carousel-region-label">UK</div>
-          <div class="carousel-viewer" id="ukCarousel">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-1.jpg" alt="UK Slide 1" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-2.jpg" alt="UK Slide 2" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-3.jpg" alt="UK Slide 3" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-4.jpg" alt="UK Slide 4" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-uk-5.jpg" alt="UK Slide 5" loading="lazy" /></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="carouselMove('ukCarousel', -1)">&#8592;</button>
-            <button class="carousel-btn carousel-next" onclick="carouselMove('ukCarousel', 1)">&#8594;</button>
-            <div class="carousel-dots"></div>
-          </div>
-        </div>
-
-        <div class="carousel-col">
-          <div class="carousel-region-label">US</div>
-          <div class="carousel-viewer" id="usCarousel">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-1.jpg" alt="US Slide 1" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-2.jpg" alt="US Slide 2" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-3.jpg" alt="US Slide 3" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-4.jpg" alt="US Slide 4" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-5.jpg" alt="US Slide 5" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-us-6.jpg" alt="US Slide 6" loading="lazy" /></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="carouselMove('usCarousel', -1)">&#8592;</button>
-            <button class="carousel-btn carousel-next" onclick="carouselMove('usCarousel', 1)">&#8594;</button>
-            <div class="carousel-dots"></div>
-          </div>
-        </div>
-
-        <div class="carousel-col">
-          <div class="carousel-region-label">APAC</div>
-          <div class="carousel-viewer" id="apacCarousel">
-            <div class="carousel-track">
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-1.jpg" alt="APAC Slide 1" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-2.jpg" alt="APAC Slide 2" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-3.jpg" alt="APAC Slide 3" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-4.jpg" alt="APAC Slide 4" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-5.jpg" alt="APAC Slide 5" loading="lazy" /></div>
-              <div class="carousel-slide"><img src="assets/foresight-carousel-apac-6.jpg" alt="APAC Slide 6" loading="lazy" /></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="carouselMove('apacCarousel', -1)">&#8592;</button>
-            <button class="carousel-btn carousel-next" onclick="carouselMove('apacCarousel', 1)">&#8594;</button>
-            <div class="carousel-dots"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="campaign-channel">
       <div class="campaign-channel-label">Social Video Post</div>
       <div class="campaign-video-row" style="margin-top:0">
         <div>
@@ -648,6 +640,105 @@
 
 
   <!-- GLOBAL STRATEGIC PLAN CAMPAIGN -->
+  <section class="case-section fade-up">
+    <div class="section-label">Social Video</div>
+    <h2 class="section-title">Made for the <br>phone first</h2>
+    <p class="body-text">Most people meet the firm on a phone, so these are built for that screen rather than cut down from a widescreen edit. Each one is framed vertically, paced to be understood with the sound off, and typeset so the point lands before a thumb moves on. I take them from script and storyboard through animation to final delivery, which keeps the brand consistent and removes the wait for an outside studio.</p>
+    <div class="phone-row">
+        <div class="phone-cell">
+          <div class="video-item phone">
+            <div class="play-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" playsinline poster="assets/thumbs/ken-social-healthcare-poster.jpg">
+              <source src="assets/videos/ken-social-healthcare.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="phone-caption">Healthcare and Evolve, campaign film</div>
+        </div>
+        <div class="phone-cell">
+          <div class="video-item phone">
+            <div class="play-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" playsinline poster="assets/thumbs/ken-social-evolve-poster.jpg">
+              <source src="assets/videos/ken-social-evolve.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="phone-caption">Evolve, series film</div>
+        </div>
+        <div class="phone-cell">
+          <div class="video-item phone">
+            <div class="play-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" playsinline poster="assets/thumbs/ken-social-globalhealth-poster.jpg">
+              <source src="assets/videos/ken-social-globalhealth.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="phone-caption">Global Health and AI Conference, speaker films</div>
+        </div>
+        <div class="phone-cell">
+          <div class="video-item phone">
+            <div class="play-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" playsinline poster="assets/thumbs/ken-social-awardreel-poster.jpg">
+              <source src="assets/videos/ken-social-awardreel.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="phone-caption">Client service award, reel</div>
+        </div>
+        <div class="phone-cell">
+          <div class="video-item phone">
+            <div class="play-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            <video controls preload="none" playsinline poster="assets/thumbs/ken-social-dallas-poster.jpg">
+              <source src="assets/videos/ken-social-dallas.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="phone-caption">US Dallas team, video graphic</div>
+        </div>
+    </div>
+  </section>
+
+  <section class="case-section fade-up">
+    <div class="section-label">Social Media</div>
+    <h2 class="section-title">One voice <br>across every post</h2>
+    <p class="body-text">Social is where the firm appears most often, so the job is consistency rather than novelty. These run across recruitment, conferences, awards and sector insight, every one built on the same grid, type scale and colour rules, so the firm reads as one organisation wherever it posts. The same system is packaged as templates, which lets teams in other offices produce their own without the brand drifting.</p>
+    <div class="social-grid">
+      <img src="assets/kennedys/social-promotions.jpg" alt="Senior promotions announcement post" loading="lazy" />
+      <img src="assets/kennedys/social-shortlisted.jpg" alt="Client Service Firm of the Year shortlist post" loading="lazy" />
+      <img src="assets/kennedys/social-bogota.jpg" alt="Bogota claims seminar registration post" loading="lazy" />
+      <img src="assets/kennedys/social-cargo.jpg" alt="Cargo conference post" loading="lazy" />
+      <img src="assets/kennedys/social-graduate.jpg" alt="Graduate recruitment post, Australia" loading="lazy" />
+      <img src="assets/kennedys/social-hongkong-esg.jpg" alt="Hong Kong and ESG insight post" loading="lazy" />
+    </div>
+
+    <div class="carousel-pair">
+      <div>
+        <div class="campaign-channel-label" style="margin-top:0.5rem">Carousel: FY26 Highlights</div>
+        <div class="carousel-viewer" id="fy26Carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-1.jpg" alt="FY26 highlights carousel slide 1" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-2.jpg" alt="FY26 highlights carousel slide 2" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-3.jpg" alt="FY26 highlights carousel slide 3" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-4.jpg" alt="FY26 highlights carousel slide 4" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-fy26-5.jpg" alt="FY26 highlights carousel slide 5" loading="lazy" /></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('fy26Carousel', -1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('fy26Carousel', 1)">&#8594;</button>
+          <div class="carousel-dots"></div>
+        </div>
+      </div>
+      <div>
+        <div class="campaign-channel-label" style="margin-top:0.5rem">Carousel: Team Introduction</div>
+        <div class="carousel-viewer" id="pecCarousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-1.jpg" alt="Team introduction carousel slide 1" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-2.jpg" alt="Team introduction carousel slide 2" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-3.jpg" alt="Team introduction carousel slide 3" loading="lazy" /></div>
+            <div class="carousel-slide"><img src="assets/kennedys/carousel-pec-4.jpg" alt="Team introduction carousel slide 4" loading="lazy" /></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('pecCarousel', -1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('pecCarousel', 1)">&#8594;</button>
+          <div class="carousel-dots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="case-section fade-up">
     <div class="section-label">Campaign</div>
     <h2 class="section-title">Global Strategic <br>Plan.</h2>
@@ -816,6 +907,20 @@
         <div class="concept-label">Concept C</div>
       </div>
     </div>
+  </section>
+
+  <section class="case-section fade-up">
+    <div class="section-label">Infographics</div>
+    <h2 class="section-title">Dense information, <br>read at a glance</h2>
+    <p class="body-text">Legal and financial material arrives dense and undifferentiated. The work is deciding what a reader needs first, giving it the weight to be seen, and letting everything else fall in behind it. These are used with partners, clients and candidates, so the numbers have to stay credible while the page stays inviting. Both are built from the firm's chart and icon language, so a reader recognises them as Kennedys before they read a word.</p>
+    <figure class="infographic">
+      <img src="assets/kennedys/infographic-at-a-glance.jpg" alt="Kennedys at a glance infographic covering practice mix, global presence, revenue growth and accreditations" loading="lazy" />
+      <figcaption>Firm overview: practice mix, global footprint, revenue growth and accreditations on a single landscape sheet.</figcaption>
+    </figure>
+    <figure class="infographic">
+      <img src="assets/kennedys/infographic-fy26.jpg" alt="FY26 highlights infographic" loading="lazy" />
+      <figcaption>FY26 highlights, built as a wide graphic for presentations and internal communications.</figcaption>
+    </figure>
   </section>
 
   <section class="case-section fade-up">
